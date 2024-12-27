@@ -17,12 +17,6 @@ url: https://fisherankney.com
 # paginate_path:    "/blog/page:num/"
                     # Or '/blog/page:num' if you want to move your index pages
 
-collections:
-  journal: 
-    output: true
-  bookshelf:
-    output: true
-
 plugins_dir:
   - jekyll-feed
   - jekyll-gist
@@ -36,10 +30,7 @@ sidebar_home_link:  true
                                 # page. If you change your paginate_path,
                                 # set this to the root of the paginate_path
                                 # to enable a separate blog link.
-#sidebar_blog_link_2:  '/bookshelf'   # By default, your home page is your blog
-                                # page. If you change your paginate_path,
-                                # set this to the root of the paginate_path
-                                # to enable a separate blog link.
+
 
 
 github: 
