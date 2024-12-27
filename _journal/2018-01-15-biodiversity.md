@@ -2,7 +2,9 @@
 layout: post
 title: "Biodiversity in the National Parks"
 categories:
-  - Blog Posts
+  - journal
+collection:
+  - journal
 top_tags: R
 exc: "This is a simple exploratory data analysis on the U.S. National Park Biodiversity dataset; I've been using R to investigate scientific problems for a while now, but I'm just starting to use the ggplot2 data visualization package. This is also my first personal data science project with R! I Hope you find it useful none the less."
 tags:

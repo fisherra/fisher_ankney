@@ -2,7 +2,7 @@
 layout: post
 title: "SQL - Subquery"
 categories:
-  - Blog Posts
+  - bookshelf
 top_tags: General
 tags:
 - Data Toolbox

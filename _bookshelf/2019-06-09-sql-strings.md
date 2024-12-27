@@ -2,7 +2,9 @@
 layout: post
 title: "SQL - Strings"
 categories:
-  - Blog Posts
+  - bookshelf
+collection:
+  - bookshelf
 top_tags: General
 tags:
 - Data Toolbox

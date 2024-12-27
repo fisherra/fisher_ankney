@@ -1,79 +1,22 @@
 <nav id="sidebar-icon-links">
 
-    <!-- <a id="github-link" class="icon" title="Github" aria-label="Github"
-       href="https://github.com/fisherra">
-      {% include svg/github.svg %}
-    </a> -->
-
-    <!-- <a id="tableau-link"
-      class="icon" title="Tableau" aria-label="Tableau"
-      href="https://public.tableau.com/profile/fisher#!/">
-      {% include svg/tab.svg %}
-    </a> -->
-    <!-- 
-    <a id="linkedin-link" class="icon" title="LinkedIn" aria-label="LinkedIn"
-        href="http://www.linkedin.com/in/fisherankney/">
-        {% include svg/linkedin.svg %}
-    </a> -->
-<!--
-    <a id="Substack-link"
-       class="icon" title="Substack" aria-label="Substack"
-       href="https://substack.com/@fisherankney">
-      {% include svg/substack.svg %}
-    </a>
-  -->
-
-    <a id="Substack-link"
-       class="icon" title="Substack" aria-label="Substack"
-       href="https://substack.com/@fisherankney">
-      {% include svg/substack.svg %}
-    </a> 
-
-    <!-- 
-    <a id="resume-link" class="icon" title="Resume" aria-label="Resume"
-      href="{{ site.baseurl }}/assets/FisherAnkneyResume.pdf", target="_blank">
-      {% include svg/download.svg %}
-    </a> -->
+  <a id="Youtube-link"
+    class="icon" title="Youtube" aria-label="Youtube"
+    href="https://www.youtube.com/@fisherankney">
+    {% include svg/youtube.svg %}
+  </a>
 
 
-  <!-- <a id="subscribe-link"
+  <a id="Substack-link"
+      class="icon" title="Substack" aria-label="Substack"
+      href="https://substack.com/@fisherankney">
+    {% include svg/substack.svg %}
+  </a>
+
+  <a id="subscribe-link"
      class="icon" title="Subscribe" aria-label="Subscribe"
      href="{{ site.baseurl }}/feed.xml">
     {% include svg/feed.svg %}
-  </a> -->
+  </a>
 
-
-  <!-- {% comment %}
-    Check if we have tag or search pages page active before linking to it.
-  {% endcomment %}
-  {% assign tags_page = false %}
-  {% assign search_page = false %}
-  {% for node in site.pages %}
-    {% if node.layout == "tags" %}
-      {% assign tags_page = node %}
-    {% elsif node.layout == "search" %}
-      {% assign search_page = node %}
-    {% endif %}
-  {% endfor %}
-
-  {% if tags_page %}
-    <a id="tags-link"
-       class="icon{% if page.url == '/tags' %} active{% endif %}"
-       title="Tags" aria-label="Tags"
-       href="{{ site.baseurl }}{{ tags_page.url }}">
-      {% include svg/tags.svg %}
-    </a>
-  {% endif %} -->
-
-<!-- 
-  {% if search_page %}
-    <a id="search-link"
-       class="icon{% if page.url == '/search' %} active{% endif %}"
-       title="Search" aria-label="Search"
-       href="{{ site.baseurl }}{{ search_page.url }}">
-      {% include svg/search.svg %}
-    </a>
-  {% endif %} -->
-
-  <!-- {% include custom-icon-links.html %} -->
 </nav>

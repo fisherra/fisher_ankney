@@ -4,8 +4,8 @@ highlighter:      rouge
 
 # Setup
 title:            Fisher Ankney
-tagline:          Outdoorsman
-description:      Outdoorsman
+tagline:          Stories from the Outdoors
+description:      Stories from the Outdoors
 #baseurl:          https://fisherankney.com
 permalink:        /:title
 author:
@@ -17,11 +17,11 @@ url: https://fisherankney.com
 # paginate_path:    "/blog/page:num/"
                     # Or '/blog/page:num' if you want to move your index pages
 
-
-
-
-
-
+collections:
+  journal: 
+    output: true
+  bookshelf:
+    output: true
 
 plugins_dir:
   - jekyll-feed
@@ -32,10 +32,16 @@ plugins_dir:
 # Custom vars
 version:            3.5.3
 sidebar_home_link:  true
-# sidebar_blog_link:  '/blog'   # By default, your home page is your blog
+#sidebar_blog_link_1:  '/journal'   # By default, your home page is your blog
                                 # page. If you change your paginate_path,
                                 # set this to the root of the paginate_path
                                 # to enable a separate blog link.
+#sidebar_blog_link_2:  '/bookshelf'   # By default, your home page is your blog
+                                # page. If you change your paginate_path,
+                                # set this to the root of the paginate_path
+                                # to enable a separate blog link.
+
+
 github: 
   repo:     
   - fisherra
