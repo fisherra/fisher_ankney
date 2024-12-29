@@ -4,8 +4,8 @@ highlighter:      rouge
 
 # Setup
 title:            Fisher Ankney
-tagline:          Stories from the Outdoors
-description:      Stories from the Outdoors
+tagline:           
+description:      
 #baseurl:          https://fisherankney.com
 permalink:        /:title
 author:
