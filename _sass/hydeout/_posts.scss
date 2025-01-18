@@ -21,16 +21,20 @@ article + *, .post-body ~ section {
   }
 }
 
+
+
 // Blog post or page title
 .page-title,
 .post-title,
 .post-title a {
   color: $heading-color;
+  margin-bottom: 1rem;
 }
 .page-title,
 .post-title {
   margin-top: 0;
 }
+
 
 // h1-size h2
 h2.post-title, h2.page-title {
@@ -89,9 +93,49 @@ h2.post-title, h2.page-title {
       margin-bottom: 50px !important;
     }
    }
+
+    .posts-layout {
+      display: flex;
+      align-items: flex-start; // Align items at the top for web view
+      gap: 1rem; // Space between the thumbnail and the content
+      flex-wrap: wrap; // Allow wrapping for responsiveness
+      align-items: center; // Center items in the column layout
+
+      // flex-direction: column;
+    
+      @media (max-width: 1100px) { // Define mobile view breakpoint
+        flex-direction: column; // Stack items vertically on mobile
+        align-items: center; // Center items in the column layout
+      }
+    }
+
+    .posts-thumbnail {
+      flex: 0 0 auto; // Prevent the thumbnail from resizing in web view
+      width: 200px; // Fixed width for the thumbnail
+      height: 200px; // Fixed height for the thumbnail
+      object-fit: cover; // Ensure the image maintains its aspect ratio
+      border-radius: 8px; // Optional: Add rounded corners
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Optional: Add a subtle shadow
+
+      @media (max-width: 1100px) { // Adjust thumbnail on mobile
+        margin-bottom: -1rem; // Add space below the image
+      }
+    }
+
+    .posts-content {
+      flex: 1; // Allow the content to take up remaining space in web view
+      display: flex;
+      flex-direction: column; // Stack the title and description vertically
+      gap: 0.1rem; // Space between the title and description
+      text-align: left; // Align text to the left by default
+
+      @media (max-width: 1100px) { // Adjust content alignment on mobile
+        margin-top: 0rem;
+        text-align: center; // Center align text for mobile
+      }
+    }
+
   }
-
-
 
 button.disqus-load {
   margin-top: 1em;

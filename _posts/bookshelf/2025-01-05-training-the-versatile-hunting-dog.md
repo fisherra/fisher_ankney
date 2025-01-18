@@ -2,6 +2,7 @@
 layout: post
 title: "Training the Versatile Hunting Dog"
 top_tags: "Book by Chuck Johnson"
+thumbnail: /images/book_reviews/training_versatile.png
 exc: "Chuck's book made its way to me as required reading when I put my deposit down for my first German Wirehaired Pointer puppy at Bone Point Kennels last month. This book will guide my first year puppy training and expectations for the field, it has gotten me even more excited at the prospect of picking up my new pup this summer."
 tags:
 ---
