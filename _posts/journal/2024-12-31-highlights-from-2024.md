@@ -38,4 +38,3 @@ In the fall we traded out our rods for shotguns, having some notable success wit
 Otherwise we had a few good duck hunts and a few poor ones all depending on how responsive the birds were feeling that day. Unfortunately we neglected chasing upland birds much this year, only counting about half a dozen grouse, a dozen quail, and four pheasants. I ate tag soup for elk and mule deer, only getting up to my unit for one three day weekend this year. 
 
 All in all 2024 was a great year, I am happy to have my parents join me out in here in Idaho and I am looking forward to 2025. This next year I expect I will spend a substantial amount of time training my new bird dog and learning how to hunt devil birds.
-

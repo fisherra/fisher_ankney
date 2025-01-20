@@ -28,7 +28,9 @@ article + *, .post-body ~ section {
 .post-title,
 .post-title a {
   color: $heading-color;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  font-family: wildwoods, cursive; //"Abril Fatface", serif;
+  font-size: 4rem;
 }
 .page-title,
 .post-title {
@@ -39,6 +41,7 @@ article + *, .post-body ~ section {
 // h1-size h2
 h2.post-title, h2.page-title {
   font-size: 2rem;
+  font-family: rockwell;
 }
 
 // Meta data line below post title
@@ -84,6 +87,7 @@ h2.post-title, h2.page-title {
       color: #999 !important;
       white-space: nowrap !important;
       margin-top: 5px !important;
+      margin-bottom: 0.5rem;
     }
     
     p {
