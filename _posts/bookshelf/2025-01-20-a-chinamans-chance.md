@@ -7,8 +7,6 @@ exc: "Dive into the experiences of Chinese immigrants to the Boise Basin area of
 tags:
 ---
 
-![]({{ site.baseurl }}/images/book_reviews/a_chinamans_chance.png)
-
 I found *A Chinaman’s Chance* in a used book store while browsing the local history section. 
 Originally a PhD thesis that was later edited to be more palatable for the armchair historian, this book is well cited and retains an academic tone. In about 200 pages we dive deep into the experiences of early Chinese immigrants to the Boise Basin area of Idaho during the height of its mining boom - from 1864 to 1900. 
 

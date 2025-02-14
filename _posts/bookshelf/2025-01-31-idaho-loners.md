@@ -7,8 +7,6 @@ exc: "A dozen short biographies on the lives and philosophies of solitude seekin
 tags:
 ---
 
-![]({{ site.baseurl }}/images/book_reviews/idaho_loners.png)
-
 Idaho Loners takes liberties with the definition of a hermit to come up with 10 short biographies and 2 strangely long biographies on various Idahoans from the past 150 years. Personally, I found the majority to be mostly forgettable, but three stood out - the first being Richard Leigh, better known as Beaver Dick. 
 
 Born in Manchester on the cusp of the Victorian era, Leigh made his way to Idaho territory sometime in the 1850s. He briefly worked as a river ferry just a few miles up the road from my house during the Boise Basin mining boom of 1863 / 64 before making his home in the shadow of the Teton Range. Several years of his journals have survived from the 1870s, most interestingly they detail his guiding of the Hayden expeditions of Yellowstone and his daily life on the frontier. Tragically, Leigh, his wife, and all five of their children became stricken with smallpox in 1876 and only Leigh survived.  

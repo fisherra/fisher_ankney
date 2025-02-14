@@ -7,9 +7,6 @@ exc: "Step by step instructions that guide the new puppy owner how to make the m
 tags:
 ---
 
-![]({{ site.baseurl }}/images/book_reviews/training_versatile.png)
-
-
 Chuck Johnson’s book made its way to me as *required reading* when I put my deposit down for my wirehair at [Bone Point Kennels](http://www.bonepointkennels.com/) last month. The majority of this 225 page primer on dog training is dedicated to reinforcing **how to not screw up your bird dog in his first year.** About a quarter of the book is dedicated to general training and bird dog stories, three quarters to upland, and a quarter to waterfowl. The majority of material is dedicated to the first 8 weeks to 8 months of the dogs life, perfect for a new dog owner like myself. 
 
 While I’ve read the book cover to cover, I plan to take Johnson’s advice from the book and re-read the relevant sections when I am in the thick of training this summer. The author details how to properly socialize your puppy in the most critical first 16 weeks of his life, including step by step instructions on gun, water, and bird introductions. The main thesis thereafter is to give the puppy his first year in the field. In the first of hunting the dog can do no wrong and should not be corrected, directed or reigned in, your only goal is get the dog on as many birds as possible to devlop their love and enthusiasm for hunting. 
