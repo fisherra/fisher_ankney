@@ -313,3 +313,47 @@ body {
     padding-top: 6rem; // More space for stacked header on mobile
   }
 }
+
+// About page styles
+.about-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+
+  .text-section {
+    margin-bottom: 3rem;
+    
+    p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .image-section {
+    margin: 3rem auto;
+    
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+  }
+
+  .dog-section {
+    margin-bottom: 4rem;
+    border-top: 1px solid #eee;
+    padding-top: 3rem;
+
+    h2 {
+      margin-bottom: 2rem;
+      font-size: 1.8rem;
+      color: #333;
+    }
+  }
+}

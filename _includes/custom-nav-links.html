@@ -1,23 +1,19 @@
-<a style="text-decoration:none;" 
-class="{% if page.url == '/journal/' %}active{% endif %}"
+<a class="nav-link {% if page.url contains 'journal' %}active{% endif %}"
 href="{{site.baseurl}}/journal/">
 Outdoor Journal
 </a>
 
-<a style="text-decoration:none;" 
-class="{% if page.url == '/bookshelf/' %}active{% endif %}"
+<a class="nav-link {% if page.url contains 'bookshelf' %}active{% endif %}"
 href="{{site.baseurl}}/bookshelf/">
 The Bookshelf
 </a>
 
-<a style="text-decoration:none;" 
-class="{% if page.url == '/about/' %}active{% endif %}"
+<a class="nav-link {% if page.url contains 'about' %}active{% endif %}"
 href="{{site.baseurl}}/about/">
 About
 </a>
 
-<a class="contact-button {% if page.url == '/contact/' %}active{% endif %}" 
-style="text-decoration:none;" 
+<a class="contact-button {% if page.url contains 'contact' %}active{% endif %}" 
 href="{{site.baseurl}}/contact/">
 Contact Me
 </a>

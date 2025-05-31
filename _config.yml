@@ -6,12 +6,11 @@ highlighter:      rouge
 title:            Fisher Ankney
 tagline:           
 description:      
-baseurl:          https://fisherankney.com
+baseurl:          ""
 permalink:        /:title
 author:
   name:           'Fisher Ankney'
-url: https://fisherankney.com
-
+url:              https://fisherankney.com
 
 # paginate:         5
 # paginate_path:    "/blog/page:num/"
@@ -41,13 +40,10 @@ sidebar_home_link:  true
                                 # set this to the root of the paginate_path
                                 # to enable a separate blog link.
 
-
-
 github: 
   repo:     
   - fisherra
 github: [metadata]      
-
 
 plugins: 
 - jekyll-paginate

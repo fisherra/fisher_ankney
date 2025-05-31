@@ -53,8 +53,11 @@
       transition: color 0.2s ease;
     }
 
-    &.active {
-      &::after {
+    &.nav-link {
+      position: relative;
+      
+      &.active::after,
+      &:hover::after {
         content: '';
         position: absolute;
         left: 0;
