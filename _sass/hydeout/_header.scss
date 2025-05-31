@@ -1,0 +1,47 @@
+.site-header {
+  background: $sidebar-bg-color;
+  color: rgba(255,255,255,.75);
+  padding: 1rem;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 999;
+}
+
+.site-header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-title {
+  font-family: wildwoods, cursive;
+  font-size: 1.5rem;
+  margin: 0;
+  
+  a {
+    color: inherit;
+    text-decoration: none;
+    
+    &:hover {
+      color: white;
+    }
+  }
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  
+  a {
+    color: inherit;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    
+    &:hover {
+      color: white;
+    }
+  }
+} 
