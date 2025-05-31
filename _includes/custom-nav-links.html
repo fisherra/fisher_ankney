@@ -1,35 +1,23 @@
-
-
-<a style = "text-decoration:none;" 
-href = "https://substack.com/@fisherankney"
-target="_blank">
-Substack
-</a> 
-
-
-<a style = "text-decoration:none;"
- href = "https://www.youtube.com/@fisherankney"
- target="_blank">
- Youtube
+<a style="text-decoration:none;" 
+class="{% if page.url == '/journal/' %}active{% endif %}"
+href="{{site.baseurl}}/journal/">
+Outdoor Journal
 </a>
 
-<!--
-<a style = "text-decoration:none;" 
-class="category-link {% if page.title == 'Blog Posts' or page.top_tags %} active{% endif %}" 
-href = "{{site.baseurl}}/journal/">
-Sportsman's Journal
-</a> 
-
-
-<a style = "text-decoration:none;" 
-class="category-link {% if page.title == 'Blog Posts' or page.top_tags %} active{% endif %}" 
-href = "{{site.baseurl}}/bookshelf/">
+<a style="text-decoration:none;" 
+class="{% if page.url == '/bookshelf/' %}active{% endif %}"
+href="{{site.baseurl}}/bookshelf/">
 The Bookshelf
-</a> 
+</a>
 
+<a style="text-decoration:none;" 
+class="{% if page.title == 'About Me' %}active{% endif %}"
+href="{{site.baseurl}}/about/">
+About Me
+</a>
 
-<a style = "text-decoration:none;" 
-class="category-link {% if page.title == 'Blog Posts' or page.top_tags %} active{% endif %}" 
-href = "{{site.baseurl}}/about/">
-About
-</a> -->
+<a class="contact-button {% if page.url == '/contact/' %}active{% endif %}" 
+style="text-decoration:none;" 
+href="{{site.baseurl}}/contact/">
+Contact Me
+</a>
