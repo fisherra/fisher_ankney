@@ -17,11 +17,11 @@ $root-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxy
 $root-font-size: 1rem !default;
 $root-line-height: 1.5 !default;
 
-$body-color:  rgba(38,50,36,0.75); // rgba(252, 245, 229, 0.75); // $gray-5 !default;
+$body-color: rgba(38,50,36,0.75);
 $body-muted: $gray-4 !default;
-$body-bg: #fff !default;
+$body-bg: #FAF3E3;  // Changed to a soft wheat color
 $link-color: $blue !default;
-$heading-color: rgba(38,50,36,0.75); //$gray-6 !default;
+$heading-color: rgba(38,50,36,0.75);
 
 $border-color: $gray-2 !default;
 $border-radius: 300px !default;
