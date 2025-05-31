@@ -6,7 +6,7 @@ highlighter:      rouge
 title:            Fisher Ankney
 tagline:           
 description:      
-#baseurl:          https://fisherankney.com
+baseurl:          https://fisherankney.com
 permalink:        /:title
 author:
   name:           'Fisher Ankney'

@@ -1,11 +1,10 @@
 ---
 layout: page
-title: Sportsman's Journal
 sidebar_link: true
 ---
 
-{% assign posts = site.posts | where:"type", "journal" %}
-
+<div style="max-width: 900px; margin: 0 auto; padding: 20px;">
+    {% assign posts = site.posts | where:"type", "journal" %}
     <ul class="posts-list">
         {% for post in posts %}
         <li>
@@ -14,7 +13,7 @@ sidebar_link: true
                     <img src="{{ site.baseurl }}{{ post.thumbnail }}" class="posts-thumbnail">
                     <div class="posts-content">
                         <h2> {{ post.title }} </h2>
-                        <h4>  {{ post.top_tags }} | {{ post.date | date_to_long_string }} </h4>
+                        <h4> {{ post.top_tags }} | {{ post.date | date_to_long_string }} </h4>
                         <p> {{ post.exc }} </p>
                     </div>
                 </div>
@@ -22,5 +21,4 @@ sidebar_link: true
         </li>
         {% endfor %}
     </ul>
-
-  </div>
+</div>

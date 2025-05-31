@@ -2,17 +2,25 @@
 layout: default
 ---
 
-<header>
-  <h1 class="post-title">{{ page.title }}</h1>
-</header>
-<div class="content">
- <!-- {% include post-meta.html post=page %} -->
-
-  <div class="post-body">
-    {{ content }}
-    {% include post-tags.html post=page %}
+<div style="max-width: 900px; margin: 0 auto; padding: 20px;">
+  {% if page.thumbnail %}
+  <div style="margin: 2rem auto 1.5rem auto; text-align: center;">
+    <img src="{{ site.baseurl }}{{ page.thumbnail }}" alt="{{ page.title }}" style="max-width: 500px; max-height: 500px; width: auto; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); object-fit: contain; display: inline-block;">
   </div>
+  {% endif %}
+  
+  <header style="text-align: center; margin-bottom: 2rem; margin-top: 0;">
+    <h1 class="post-title">{{ page.title }}{% if page.top_tags %} - {{ page.top_tags }}{% endif %}</h1>
+  </header>
+  <div class="content">
+   <!-- {% include post-meta.html post=page %} -->
 
-  {% include comments.html %}
-  {% include related_posts.html %}
+    <div class="post-body">
+      {{ content }}
+      {% include post-tags.html post=page %}
+    </div>
+
+    {% include comments.html %}
+    {% include related_posts.html %}
+  </div>
 </div>

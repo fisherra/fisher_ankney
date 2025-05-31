@@ -28,13 +28,15 @@ article + *, .post-body ~ section {
 .post-title,
 .post-title a {
   color: $heading-color;
-  margin-bottom: 1.5rem;
-  font-family: wildwoods, cursive; //"Abril Fatface", serif;
-  font-size: 4rem;
+  margin-bottom: 2.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  font-size: 2.5rem;
+  font-weight: 500;
+  letter-spacing: -0.5px;
 }
 .page-title,
 .post-title {
-  margin-top: 0;
+  margin-top: 2rem;
 }
 
 
@@ -71,6 +73,7 @@ h2.post-title, h2.page-title {
 .posts-list {
   padding-left: 0;
   list-style: none;
+  margin-top: -1rem;  // Remove space that was reserved for title
   
   a:hover {
     text-decoration: none;
