@@ -3,17 +3,120 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import fishing2005 from '../assets/images/site/fishing_2005.jpeg';
 import deer from '../assets/images/site/deer.png';
-import ronan from '../assets/images/site/ronan_2.JPG';
-import odin from '../assets/images/site/oden_dog_2.jpg';
+
+const roles = [
+  {
+    org: 'CCT',
+    logo: '/logos/cct.png',
+    title: 'Senior Product Manager, Insight Cash',
+    dates: '2026 — Present',
+    note: 'Own product strategy for Insight Cash, the cage, vault, and revenue-audit product in CCT’s Casino Insight platform. Shaping how we use AI-assisted development while migrating a legacy WinForms application to a multi-tenant web app on AWS.',
+  },
+  {
+    org: 'DoubleVerify',
+    logo: '/logos/doubleverify.svg',
+    title: 'Product Manager',
+    dates: '2023 — 2026',
+    note: 'Owned the strategy for a four-product advertising suite, grown from $39M to $50M in ARR. Took Attention Measurement for Marketplaces from first discovery call to GA.',
+  },
+  {
+    org: 'Oracle',
+    logo: '/logos/oracle.png',
+    title: 'Product Manager, Moat',
+    dates: '2022 — 2023',
+    note: 'Replaced seven disjointed internal configuration tools with a single self-service interface, saving roughly 120 FTE hours a month.',
+  },
+  {
+    org: 'Gravitate',
+    logo: '/logos/gravitate.png',
+    title: 'Founding Product Manager',
+    dates: '2020 — 2022',
+    note: 'First PM at a pre-seed startup; $0 to $1M+ ARR in under two years. Also the ML subject-matter expert behind its fuel demand forecasting and best-price purchasing algorithms.',
+  },
+];
 ---
 
-<Base title="About" description="About Fisher Ankney.">
+<Base
+  title="About"
+  description="Fisher Ankney is a product manager and builder in Boise, Idaho — a statistician by training who ships the code."
+>
   <div class="prose">
     <h1>About</h1>
+
+    <p class="lede">
+      I'm a product manager who still writes the code.
+    </p>
+
+    <p>
+      Most of my week is ordinary product work — discovery calls, roadmaps, pricing, launches — but I don't hand
+      a problem to engineering until I've pulled the data myself and built enough of a prototype to know the idea
+      holds up. AI-assisted development has made that loop fast enough to be the default rather than the
+      exception, so what I bring to a spec review these days is usually a working thing, not a wireframe.
+    </p>
+
+    <p>
+      That habit comes from the way I got here. I trained as a statistician: a master's from Oklahoma State, two
+      years teaching stats to auditorium-sized undergraduate sections, and before that two years designing
+      experiments and fitting models for the USGS. It means I can read the paper, check the math, and tell you
+      whether a lift is real or an artifact of how somebody sampled. For the four years I spent in ad
+      measurement that <em>was</em> the job, and it's no less true now that the product is a ledger which has to
+      reconcile to the dollar.
+    </p>
+
+    <p>
+      The upshot is that I can sit on either side of the table. At Gravitate I was the founding PM at a pre-seed
+      startup and also its ML subject-matter expert, researching and coding the forecasting and pricing
+      algorithms that became the product. At DoubleVerify I owned a $50M suite of advertising products and took
+      Attention Measurement for Marketplaces from discovery through GA.
+    </p>
+
+    <p>
+      These days I'm senior product manager for Insight Cash at CCT, where casinos run their cage, vault, and
+      revenue audit. I'm shaping how we use AI-assisted development, migrating a legacy WinForms application to
+      a multi-tenant web app on an AWS backend, and running discovery with casino accounting, finance, and audit
+      teams across the country. If you're building something where the measurement is the hard part, I'd like to
+      hear about it.
+    </p>
+
+    <p class="resume-line">
+      <a class="button" href="/fisher-ankney-resume.pdf" download>Download my resume (PDF)</a>
+    </p>
+  </div>
+
+  <section class="timeline-wrap">
+    <h2 class="section-title">Where I've worked</h2>
+    <ol class="timeline">
+      {
+        roles.map((role) => (
+          <li>
+            <span class="logo" aria-hidden="true">
+              <img src={role.logo} alt="" loading="lazy" decoding="async" />
+            </span>
+            <div class="role-body">
+              <div class="role-head">
+                <span class="org">{role.org}</span>
+                <span class="dates">{role.dates}</span>
+              </div>
+              <p class="role-title">{role.title}</p>
+              <p class="role-note">{role.note}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+    <p class="credentials">
+      M.S. Statistics, Oklahoma State University — Outstanding Master's Graduate, 2020 · B.S. Geology c.
+      Geophysics, Colorado State University — Honor Senior, 2016 · Pragmatic Institute PMC Level II
+    </p>
+  </section>
+
+  <div class="prose">
+    <hr />
+    <h2>Away from the desk</h2>
     <p>
       Growing up in northern Michigan I was raised on a steady diet of hunting and fishing. My home town of
-      Grayling boasts a rich outdoors heritage - it's where Fred Bear opened up shop in 1933 and 26 years later
-      it's where Trout Unlimited was founded. Hell, even the ubiquitous Adam's fly was invented just a few miles
+      Grayling boasts a rich outdoors heritage — it's where Fred Bear opened up shop in 1933, and 26 years later
+      it's where Trout Unlimited was founded. Hell, even the ubiquitous Adams fly was invented just a few miles
       down the road on the Boardman River.
     </p>
     <p>
@@ -23,57 +126,138 @@ import odin from '../assets/images/site/oden_dog_2.jpg';
     </p>
     <Image class="photo" src={fishing2005} alt="Fishing as a kid in 2005" width={720} />
     <p>
-      November 15th is a holy day for all in Northern Michigan School would always be closed for this, the
+      November 15th is a holy day for all in northern Michigan. School would always be closed for this, the
       opening day of rifle season. I took my first whitetail with my bow from a tree stand in the woods behind
-      the house at 13 and occasionally I still make the pilgrimage back to hunt whitetails in the north woods
-      because there's nothing quiet like it.
+      the house at 13, and occasionally I still make the pilgrimage back to hunt whitetails in the north woods
+      because there's nothing quite like it.
     </p>
     <Image class="photo" src={deer} alt="Whitetails from the north woods in 2006 and 2023" width={720} />
     <p>
-      On the day after I graduated high school I moved to Colorado, calling Fort Collins home for the next
-      decade as I focused on getting an education and a career. Unfortunately I left most of my hunting and
-      fishing behind during this time, only taking the occasional day trip to fish the overcroweded Poudre River.
-      In early 2022 I decided I had enough of it and I moved to Boise - a city in a state to which I had never
-      been before. Since the move I have been making the most out of every season in this bountiful new home.
+      The day after I graduated high school I moved to Colorado, calling Fort Collins home for the next decade as
+      I focused on getting an education and a career. Unfortunately I left most of my hunting and fishing behind
+      during this time, only taking the occasional day trip to fish the overcrowded Poudre River. In early 2022 I
+      decided I'd had enough of that and moved to Boise — a city in a state I had never set foot in before. Since
+      the move I've been making the most out of every season in this bountiful new home.
     </p>
-  </div>
-
-  <div class="dogs">
-    <article class="dog-card">
-      <Image class="dog-photo" src={ronan} alt="Ronan, an Australian Shepherd" width={480} />
-      <div class="dog-body">
-        <h2>Ronan - Australian Shepard</h2>
-        <p>
-          I got Ronan from a random guy on Facebook looking to offload his now grown puppy because he "didn't
-          have the time for him anymore" in January of 2021. Ronan was about a year old and unfortunately very
-          poorly behaved. Our first six months were rough but we eventually established in him a good standard
-          of canine citizenship. I am now happy to say that Ronan is my best buddy, his heart, devotion and
-          personality makes up for the few stubborn behavioral shortcomings that remain.
-        </p>
-        <p>
-          Ronan is at his best on the river, always faithfully watching over me from the bank or the back of
-          the drift boat as I fish. He gives a mean bark and growl at anyone rude enough to low hole us -- and
-          don't get him started on the rafters. Ronan loves to come hiking and camping, requiring very little
-          supervision I often forget he's come along until he conspicuously steals all of the sticks from my
-          firewood pile.
-        </p>
-      </div>
-    </article>
-
-    <article class="dog-card">
-      <Image class="dog-photo" src={odin} alt="Odin, a German Wirehaired Pointer puppy" width={480} />
-      <div class="dog-body">
-        <h2>Odin - German Wirehaired Pointer</h2>
-        <p>
-          Born March 5, 2025, little Odie my newest outdoor buddy. I'm planning to focus mainly on hunting the
-          chukar hills and the snake with my new canine partner.
-        </p>
-      </div>
-    </article>
   </div>
 </Base>
 
 <style>
+  .lede {
+    font-family: var(--display);
+    font-size: 1.4rem;
+    font-style: italic;
+    line-height: 1.35;
+    color: var(--text);
+    margin: 0 0 1.25rem;
+  }
+
+  .resume-line {
+    margin-top: 2rem;
+  }
+
+  .button {
+    display: inline-block;
+    padding: 0.65rem 1.4rem;
+    border-radius: var(--radius);
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    font-family: var(--display);
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+
+  .button:hover {
+    background: var(--accent-hover);
+    color: #fff;
+  }
+
+  .timeline-wrap {
+    max-width: var(--content);
+    margin: 3rem auto 0;
+  }
+
+  .timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .timeline li {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 1.1rem;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    margin-top: 0.15rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+
+  .logo img {
+    max-width: 34px;
+    max-height: 34px;
+    object-fit: contain;
+    filter: grayscale(1) contrast(0.85) opacity(0.78);
+    transition: filter 0.2s ease;
+  }
+
+  .timeline li:hover .logo img {
+    filter: none;
+  }
+
+  .role-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.25rem 1rem;
+  }
+
+  .org {
+    font-family: var(--display);
+    font-size: 1.15rem;
+    font-weight: 600;
+  }
+
+  .dates {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .role-title {
+    margin: 0.1rem 0 0.4rem;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--rust);
+  }
+
+  .role-note {
+    margin: 0;
+    font-size: 1.025rem;
+  }
+
+  .credentials {
+    margin: 1.5rem 0 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
   .photo {
     display: block;
     width: 100%;
@@ -82,55 +266,5 @@ import odin from '../assets/images/site/oden_dog_2.jpg';
     margin: 2rem auto;
     border-radius: var(--radius);
     box-shadow: var(--shadow);
-  }
-
-  .dogs {
-    max-width: var(--content);
-    margin: 3rem auto 0;
-    display: grid;
-    gap: 1.5rem;
-  }
-
-  .dog-card {
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 1.5rem;
-    align-items: center;
-    padding: 1.5rem;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-  }
-
-  .dog-photo {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: var(--radius);
-  }
-
-  .dog-body h2 {
-    margin: 0 0 0.5rem;
-    font-size: 1.3rem;
-  }
-
-  .dog-body p {
-    margin: 0 0 0.75rem;
-    font-size: 1.075rem;
-  }
-
-  .dog-body p:last-child {
-    margin-bottom: 0;
-  }
-
-  @media (max-width: 640px) {
-    .dog-card {
-      grid-template-columns: 1fr;
-    }
-
-    .dog-photo {
-      height: 240px;
-    }
   }
 </style>
