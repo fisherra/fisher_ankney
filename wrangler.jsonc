@@ -1,0 +1,8 @@
+{
+  "name": "fisherankney",
+  "compatibility_date": "2026-09-27",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  }
+}
