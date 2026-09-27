@@ -6,10 +6,13 @@ import { getPosts } from '../../lib/posts';
 const posts = await getPosts('journal');
 ---
 
-<Base title="Outdoor Journal" description="Monthly field reports from hunting and fishing in Idaho.">
+<Base title="Sportsman's Journal" description="Quarterly field reports from hunting and fishing across Idaho.">
   <div class="page-intro">
-    <h1>Outdoor Journal</h1>
-    <p>Monthly field reports from Idaho's rivers and hills, the successes and, more importantly, the failures.</p>
+    <h1>Sportsman's Journal</h1>
+    <p>
+      Quarterly dispatches from Idaho's rivers and hills — hunting and fishing, season by season, the successes
+      and, more importantly, the failures.
+    </p>
   </div>
   <PostList posts={posts} />
 </Base>
