@@ -2,7 +2,8 @@
 import { Image } from 'astro:assets';
 import { render } from 'astro:content';
 import Base from '../layouts/Base.astro';
-import { byline, formatDate, type Post } from '../lib/posts';
+import Stars from './Stars.astro';
+import { byline, formatDate, formatYear, type Post } from '../lib/posts';
 
 interface Props {
   post: Post;
@@ -10,7 +11,7 @@ interface Props {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
-const sectionLabel = post.collection === 'journal' ? 'Journal' : 'Bookshelf';
+const sectionLabel = post.collection === 'journal' ? "Sportsman's Journal" : 'Bookshelf';
 ---
 
 <Base title={post.data.title} description={post.data.excerpt}>
@@ -19,7 +20,11 @@ const sectionLabel = post.collection === 'journal' ? 'Journal' : 'Bookshelf';
     <Image src={post.data.thumbnail} alt={post.data.title} width={800} class="cover" />
     <header>
       <h1>{post.data.title}</h1>
-      <p class="meta">{byline(post)} · {formatDate(post.data.date)}</p>
+      <p class="meta">
+        {byline(post)} · {formatDate(post.data.date)}
+        {'published' in post.data && <> · published {formatYear(post.data.published)}</>}
+      </p>
+      {'published' in post.data && <Stars rating={post.data.rating} class="post-stars" />}
     </header>
     <div class="prose">
       <Content />
@@ -73,5 +78,10 @@ const sectionLabel = post.collection === 'journal' ? 'Journal' : 'Bookshelf';
     font-family: var(--mono);
     font-size: 0.85rem;
     letter-spacing: 0.02em;
+  }
+
+  .post-stars {
+    margin-top: 0.6rem;
+    font-size: 1.15rem;
   }
 </style>

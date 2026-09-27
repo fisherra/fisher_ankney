@@ -2,6 +2,8 @@
 title: "Idaho Ruffed Grouse Hunting"
 date: 2025-02-14
 author: "Andrew Wayment"
+category: "Outdoors"
+published: 2018
 excerpt: "Stories and musings that give a very relatable and yet exciting glimp into what drives our relentless pursuit of the king of upland birds, the Ruffed Grouse."
 thumbnail: ../../assets/images/book_reviews/ol_ruff.png
 ---

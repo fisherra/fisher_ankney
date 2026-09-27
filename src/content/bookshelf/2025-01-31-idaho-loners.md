@@ -2,6 +2,8 @@
 title: "Idaho Loners"
 date: 2025-01-31
 author: "Cort Conley"
+category: "History"
+published: 1994
 excerpt: "A dozen short biographies on the lives and philosophies of solitude seeking Idahoans from the past 150 years."
 thumbnail: ../../assets/images/book_reviews/idaho_loners.png
 ---

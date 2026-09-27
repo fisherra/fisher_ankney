@@ -2,6 +2,8 @@
 title: "A Chinaman's Chance"
 date: 2025-01-20
 author: "Liping Zhu"
+category: "History"
+published: 1997
 excerpt: "Dive into the experiences of Chinese immigrants to the Boise Basin area of Idaho during the height of its mining boom - from 1864 to 1900."
 thumbnail: ../../assets/images/book_reviews/a_chinamans_chance.png
 ---

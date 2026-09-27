@@ -25,7 +25,18 @@ const journal = defineCollection({
 
 const bookshelf = defineCollection({
   loader: loader('bookshelf'),
-  schema: (ctx) => z.object({ ...postFields(ctx), author: z.string() }),
+  schema: (ctx) =>
+    z.object({
+      ...postFields(ctx),
+      author: z.string(),
+      category: z.enum(['Outdoors', 'Literature', 'History']),
+      // Year the book was first published or composed. Negative years are BC,
+      // so the Iliad sorts at -750 and Antigone at -441.
+      published: z.number().int(),
+      // 0-5 in half-star steps. Leave the field out while a book is unrated;
+      // unrated books sort to the bottom of both rating orders.
+      rating: z.number().min(0).max(5).multipleOf(0.5).optional(),
+    }),
 });
 
 export const collections = { journal, bookshelf };

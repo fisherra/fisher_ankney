@@ -2,6 +2,8 @@
 title: "Training the Versatile Hunting Dog"
 date: 2025-01-05
 author: "Chuck Johnson"
+category: "Outdoors"
+published: 2006
 excerpt: "Step by step instructions that guide the new puppy owner how to make the most of their hunting dog in the field and stream."
 thumbnail: ../../assets/images/book_reviews/training_versatile.png
 ---

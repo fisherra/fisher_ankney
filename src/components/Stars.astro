@@ -1,0 +1,56 @@
+---
+interface Props {
+  rating?: number;
+  class?: string;
+}
+
+const { rating, class: className } = Astro.props;
+const label = rating === undefined ? 'Not yet rated' : `${rating} out of 5 stars`;
+---
+
+{
+  rating === undefined ? (
+    <span class:list={['stars', 'unrated', className]}>Unrated</span>
+  ) : (
+    <span class:list={['stars', className]} role="img" aria-label={label} title={label}>
+      <span class="track" aria-hidden="true">★★★★★</span>
+      <span class="fill" aria-hidden="true" style={`width: ${(rating / 5) * 100}%`}>
+        ★★★★★
+      </span>
+    </span>
+  )
+}
+
+<style>
+  .stars {
+    position: relative;
+    display: inline-block;
+    font-size: 0.95rem;
+    line-height: 1;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    /* The glyphs render at wildly different widths across platforms; pin the
+       font so the fill overlay always lines up with the track beneath it. */
+    font-family: 'Courier Prime', 'Courier New', monospace;
+  }
+
+  .track {
+    color: var(--border);
+  }
+
+  .fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    color: var(--rust);
+  }
+
+  .unrated {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+</style>

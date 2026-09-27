@@ -4,12 +4,293 @@ import PostList from '../../components/PostList.astro';
 import { getPosts } from '../../lib/posts';
 
 const posts = await getPosts('bookshelf');
+
+const fields = [
+  { value: 'read', label: 'Date read' },
+  { value: 'rating', label: 'Rating' },
+  { value: 'title', label: 'Title' },
+  { value: 'published', label: 'Date published' },
+];
+
+const categories = ['Outdoors', 'Literature', 'History'] as const;
+const counts = Object.fromEntries(
+  categories.map((c) => [c, posts.filter((p) => p.data.category === c).length]),
+);
 ---
 
-<Base title="Bookshelf" description="Book reviews from Fisher Ankney: history, the outdoors, and more.">
+<Base title="My Bookshelf" description="Book reviews from Fisher Ankney: history, the outdoors, and more.">
   <div class="page-intro">
-    <h1>Bookshelf</h1>
+    <h1>My Bookshelf</h1>
     <p>Notes and reviews on what I'm reading, mostly history and the outdoors, sometimes further afield.</p>
   </div>
+
+  <div class="controls">
+    <div class="group">
+      <label for="sort-field">Sort by</label>
+      <select id="sort-field">
+        {fields.map(({ value, label }) => <option value={value}>{label}</option>)}
+      </select>
+      <button id="sort-dir" type="button" aria-label="Recently read first" title="Recently read first">
+        <span aria-hidden="true">↓</span>
+      </button>
+    </div>
+
+    <div class="group filters" role="group" aria-label="Filter by category">
+      <label>Show</label>
+      {
+        categories.map((c) => (
+          <button class="chip" type="button" data-category={c} aria-pressed="false">
+            {c} <span class="chip-count">{counts[c]}</span>
+          </button>
+        ))
+      }
+    </div>
+
+    <span class="count" id="count" aria-live="polite">{posts.length} books</span>
+  </div>
+
+  <p class="empty" id="empty" hidden>No books match that filter.</p>
+
   <PostList posts={posts} />
 </Base>
+
+<style>
+  .controls {
+    max-width: 960px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem 1.25rem;
+  }
+
+  .group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  label {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-right: 0.1rem;
+  }
+
+  select,
+  button {
+    font-family: var(--display);
+    font-size: 1rem;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.4rem 0.7rem;
+  }
+
+  button {
+    cursor: pointer;
+    line-height: 1.35;
+  }
+
+  #sort-dir {
+    padding: 0.4rem 0.75rem;
+  }
+
+  .chip {
+    border-radius: 999px;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.95rem;
+  }
+
+  .chip-count {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-left: 0.15rem;
+  }
+
+  button:hover {
+    border-color: var(--accent);
+  }
+
+  .chip[aria-pressed='true'] {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  .chip[aria-pressed='true'] .chip-count {
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  select:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+  }
+
+  .count {
+    margin-left: auto;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+  }
+
+  .empty {
+    max-width: 960px;
+    margin: 0 auto 1.5rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  @media (max-width: 720px) {
+    .count {
+      margin-left: 0;
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  const field = document.querySelector<HTMLSelectElement>('#sort-field');
+  const dirButton = document.querySelector<HTMLButtonElement>('#sort-dir');
+  const list = document.querySelector<HTMLUListElement>('.post-list');
+  const countEl = document.querySelector<HTMLElement>('#count');
+  const emptyEl = document.querySelector<HTMLElement>('#empty');
+  const chips = Array.from(document.querySelectorAll<HTMLButtonElement>('.chip'));
+
+  if (field && dirButton && list && countEl && emptyEl) {
+    const items = Array.from(list.children) as HTMLLIElement[];
+    const SORT_KEY = 'bookshelf-sort';
+    const FILTER_KEY = 'bookshelf-filter';
+
+    // An arrow on its own is ambiguous once the field changes, so each
+    // combination also spells itself out in the button's label and tooltip.
+    const LABELS: Record<string, { asc: string; desc: string }> = {
+      read: { asc: 'Read earliest first', desc: 'Recently read first' },
+      rating: { asc: 'Lowest rated first', desc: 'Highest rated first' },
+      title: { asc: 'Title A–Z', desc: 'Title Z–A' },
+      published: { asc: 'Published oldest first', desc: 'Published newest first' },
+    };
+
+    // Picking a field lands on the direction you almost always want from it.
+    const DEFAULT_DIR: Record<string, 'asc' | 'desc'> = {
+      read: 'desc',
+      rating: 'desc',
+      title: 'asc',
+      published: 'asc',
+    };
+
+    let direction: 'asc' | 'desc' = 'desc';
+    // Empty means no filter at all, which shows everything.
+    let active = new Set<string>();
+
+    const num = (el: HTMLElement, name: string) => {
+      const raw = el.dataset[name];
+      return raw === undefined || raw === '' ? null : Number(raw);
+    };
+
+    const compare = (a: HTMLLIElement, b: HTMLLIElement, key: string, dir: number) => {
+      if (key === 'title') {
+        return (a.dataset.title ?? '').localeCompare(b.dataset.title ?? '') * dir;
+      }
+      const x = num(a, key);
+      const y = num(b, key);
+      // Unrated books always sit at the bottom, whichever way the sort runs.
+      if (x === null && y === null) return 0;
+      if (x === null) return 1;
+      if (y === null) return -1;
+      return (x - y) * dir;
+    };
+
+    const save = (key: string, value: string) => {
+      try {
+        localStorage.setItem(key, value);
+      } catch {
+        // Not being able to remember the choice is not worth failing over.
+      }
+    };
+
+    const apply = () => {
+      const key = field.value;
+      const dir = direction === 'asc' ? 1 : -1;
+      const sorted = [...items].sort((a, b) => compare(a, b, key, dir));
+      // Reassigning in order moves the existing nodes; nothing is re-rendered.
+      for (const item of sorted) list.appendChild(item);
+
+      let shown = 0;
+      for (const item of items) {
+        const match = active.size === 0 || active.has(item.dataset.category ?? '');
+        item.hidden = !match;
+        if (match) shown += 1;
+      }
+
+      countEl.textContent =
+        shown === items.length ? `${items.length} books` : `${shown} of ${items.length} books`;
+      emptyEl.hidden = shown > 0;
+
+      const label = LABELS[key][direction];
+      dirButton.setAttribute('aria-label', label);
+      dirButton.title = label;
+      const glyph = dirButton.firstElementChild;
+      if (glyph) glyph.textContent = direction === 'asc' ? '↑' : '↓';
+
+      for (const chip of chips) {
+        chip.setAttribute('aria-pressed', String(active.has(chip.dataset.category ?? '')));
+      }
+
+      save(SORT_KEY, `${key}|${direction}`);
+      save(FILTER_KEY, [...active].join(','));
+    };
+
+    const read = (key: string) => {
+      try {
+        return localStorage.getItem(key);
+      } catch {
+        // Private browsing or blocked storage: fall back to the defaults.
+        return null;
+      }
+    };
+
+    const storedSort = read(SORT_KEY);
+    if (storedSort) {
+      const [key, dir] = storedSort.split('|');
+      if (LABELS[key] && (dir === 'asc' || dir === 'desc')) {
+        field.value = key;
+        direction = dir;
+      }
+    }
+
+    const known = new Set(chips.map((c) => c.dataset.category ?? ''));
+    const storedFilter = read(FILTER_KEY);
+    if (storedFilter) {
+      active = new Set(storedFilter.split(',').filter((c) => known.has(c)));
+    }
+
+    apply();
+
+    field.addEventListener('change', () => {
+      direction = DEFAULT_DIR[field.value] ?? 'desc';
+      apply();
+    });
+
+    dirButton.addEventListener('click', () => {
+      direction = direction === 'asc' ? 'desc' : 'asc';
+      apply();
+    });
+
+    for (const chip of chips) {
+      chip.addEventListener('click', () => {
+        const cat = chip.dataset.category ?? '';
+        if (active.has(cat)) active.delete(cat);
+        else active.add(cat);
+        apply();
+      });
+    }
+  }
+</script>
