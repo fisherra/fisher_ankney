@@ -1,0 +1,15 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostList from '../../components/PostList.astro';
+import { getPosts } from '../../lib/posts';
+
+const posts = await getPosts('bookshelf');
+---
+
+<Base title="Bookshelf" description="Book reviews from Fisher Ankney: history, the outdoors, and more.">
+  <div class="page-intro">
+    <h1>Bookshelf</h1>
+    <p>Notes and reviews on what I'm reading, mostly history and the outdoors, sometimes further afield.</p>
+  </div>
+  <PostList posts={posts} />
+</Base>

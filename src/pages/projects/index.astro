@@ -1,0 +1,27 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { projects } from '../../data/projects';
+---
+
+<Base title="Projects" description="Products Fisher Ankney is building with AI.">
+  <div class="page-intro">
+    <h1>Projects</h1>
+    <p>
+      Small products I'm building in public with AI. Each one gets a short PRD, a public backlog, and a
+      write-up of what shipped and what got cut.
+    </p>
+  </div>
+  <div class="grid">
+    {projects.map((project) => <ProjectCard project={project} />)}
+  </div>
+</Base>
+
+<style>
+  .grid {
+    max-width: var(--content);
+    margin: 0 auto;
+    display: grid;
+    gap: 1rem;
+  }
+</style>

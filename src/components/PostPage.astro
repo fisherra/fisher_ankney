@@ -1,0 +1,71 @@
+---
+import { Image } from 'astro:assets';
+import { render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { byline, formatDate, type Post } from '../lib/posts';
+
+interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const sectionLabel = post.collection === 'journal' ? 'Journal' : 'Bookshelf';
+---
+
+<Base title={post.data.title} description={post.data.excerpt}>
+  <article>
+    <a class="back" href={`/${post.collection}/`}>← {sectionLabel}</a>
+    <Image src={post.data.thumbnail} alt={post.data.title} width={800} class="cover" />
+    <header>
+      <h1>{post.data.title}</h1>
+      <p class="meta">{byline(post)} · {formatDate(post.data.date)}</p>
+    </header>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</Base>
+
+<style>
+  article {
+    max-width: var(--content);
+    margin: 0 auto;
+  }
+
+  .back {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+
+  .back:hover {
+    color: var(--text);
+  }
+
+  .cover {
+    display: block;
+    max-height: 480px;
+    width: auto;
+    margin: 0 auto 1.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  h1 {
+    margin: 0 0 0.35rem;
+    font-size: 2.1rem;
+  }
+
+  .meta {
+    margin: 0;
+    color: var(--muted);
+  }
+</style>

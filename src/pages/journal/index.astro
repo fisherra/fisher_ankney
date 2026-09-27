@@ -1,0 +1,15 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostList from '../../components/PostList.astro';
+import { getPosts } from '../../lib/posts';
+
+const posts = await getPosts('journal');
+---
+
+<Base title="Outdoor Journal" description="Monthly field reports from hunting and fishing in Idaho.">
+  <div class="page-intro">
+    <h1>Outdoor Journal</h1>
+    <p>Monthly field reports from Idaho's rivers and hills, the successes and, more importantly, the failures.</p>
+  </div>
+  <PostList posts={posts} />
+</Base>

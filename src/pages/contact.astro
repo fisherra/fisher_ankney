@@ -1,0 +1,36 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Contact" description="Get in touch with Fisher Ankney.">
+  <div class="card">
+    <h1>Contact</h1>
+    <p>
+      Send me a note at <a href="mailto:fisherankney@gmail.com">fisherankney@gmail.com</a> or fill out the form
+      below and let me know what's on your mind!
+    </p>
+    <div id="formkeep-embed" data-formkeep-url="https://formkeep.com/p/b01b24955cfba14478eb025bb4226b6f?embedded=1">
+    </div>
+  </div>
+  <script is:inline src="https://pym.nprapps.org/pym.v1.min.js"></script>
+  <script is:inline src="https://formkeep-production-herokuapp-com.global.ssl.fastly.net/formkeep-embed.js"></script>
+</Base>
+
+<style>
+  .card {
+    max-width: var(--content);
+    margin: 0 auto;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+  }
+
+  h1 {
+    margin-top: 0;
+  }
+
+  p {
+    font-size: 1.1rem;
+  }
+</style>

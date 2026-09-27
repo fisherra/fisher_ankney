@@ -1,0 +1,125 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description = 'Fisher Ankney: product manager building with AI, based in Boise, Idaho.' } =
+  Astro.props;
+const fullTitle = title ? `${title} · Fisher Ankney` : 'Fisher Ankney';
+
+const nav = [
+  { href: '/projects/', label: 'Projects' },
+  { href: '/bookshelf/', label: 'Bookshelf' },
+  { href: '/journal/', label: 'Journal' },
+  { href: '/about/', label: 'About' },
+];
+const isActive = (href: string) => Astro.url.pathname.startsWith(href);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet" />
+    <title>{fullTitle}</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="inner">
+        <a class="site-title" href="/">Fisher Ankney</a>
+        <nav>
+          {nav.map(({ href, label }) => (
+            <a href={href} class:list={['nav-link', { active: isActive(href) }]}>{label}</a>
+          ))}
+          <a href="/contact/" class:list={['contact', { active: isActive('/contact') }]}>Contact</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <p>© {new Date().getFullYear()} Fisher Ankney · Boise, Idaho</p>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .inner {
+    max-width: var(--wide);
+    margin: 0 auto;
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 1.5rem;
+  }
+
+  .site-title {
+    font-family: var(--display);
+    font-size: 1.6rem;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem 1.25rem;
+  }
+
+  .nav-link {
+    color: var(--muted);
+    text-decoration: none;
+    padding: 0.25rem 0;
+    border-bottom: 2px solid transparent;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--text);
+    border-bottom-color: var(--accent);
+  }
+
+  .contact {
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+    font-weight: 600;
+  }
+
+  .contact:hover,
+  .contact.active {
+    background: var(--accent-hover);
+    color: #fff;
+  }
+
+  .site-footer {
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+    padding: 1.5rem 1.25rem;
+  }
+
+  .site-footer p {
+    margin: 0;
+  }
+</style>

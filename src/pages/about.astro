@@ -1,0 +1,63 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import fishing2005 from '../assets/images/site/fishing_2005.jpeg';
+import deer from '../assets/images/site/deer.png';
+import ronan from '../assets/images/site/ronan_2.JPG';
+import odin from '../assets/images/site/oden_dog_2.jpg';
+---
+
+<Base title="About" description="About Fisher Ankney.">
+  <div class="prose">
+    <h1>About</h1>
+    <p>
+      Growing up in northern Michigan I was raised on a steady diet of hunting and fishing. My home town of
+      Grayling boasts a rich outdoors heritage - it's where Fred Bear opened up shop in 1933 and 26 years later
+      it's where Trout Unlimited was founded. Hell, even the ubiquitous Adam's fly was invented just a few miles
+      down the road on the Boardman River.
+    </p>
+    <p>
+      My parents had me out in the field back before I can remember, a service that I will forever be grateful
+      for. We would regularly fly fish our favorite stretch of the Au Sable just ten or fifteen minutes from our
+      house nearly year round.
+    </p>
+    <Image src={fishing2005} alt="Fishing as a kid in 2005" width={720} />
+    <p>
+      November 15th is a holy day for all in Northern Michigan School would always be closed for this, the
+      opening day of rifle season. I took my first whitetail with my bow from a tree stand in the woods behind
+      the house at 13 and occasionally I still make the pilgrimage back to hunt whitetails in the north woods
+      because there's nothing quiet like it.
+    </p>
+    <Image src={deer} alt="Whitetails from the north woods in 2006 and 2023" width={720} />
+    <p>
+      On the day after I graduated high school I moved to Colorado, calling Fort Collins home for the next
+      decade as I focused on getting an education and a career. Unfortunately I left most of my hunting and
+      fishing behind during this time, only taking the occasional day trip to fish the overcroweded Poudre River.
+      In early 2022 I decided I had enough of it and I moved to Boise - a city in a state to which I had never
+      been before. Since the move I have been making the most out of every season in this bountiful new home.
+    </p>
+
+    <h2>Ronan - Australian Shepard</h2>
+    <Image src={ronan} alt="Ronan, an Australian Shepherd" width={720} />
+    <p>
+      I got Ronan from a random guy on Facebook looking to offload his now grown puppy because he "didn't have the
+      time for him anymore" in January of 2021. Ronan was about a year old and unfortunately very poorly behaved.
+      Our first six months were rough but we eventually established in him a good standard of canine citizenship.
+      I am now happy to say that Ronan is my best buddy, his heart, devotion and personality makes up for the few
+      stubborn behavioral shortcomings that remain.
+    </p>
+    <p>
+      Ronan is at his best on the river, always faithfully watching over me from the bank or the back of the
+      drift boat as I fish. He gives a mean bark and growl at anyone rude enough to low hole us -- and don't get
+      him started on the rafters. Ronan loves to come hiking and camping, requiring very little supervision I
+      often forget he's come along until he conspicuously steals all of the sticks from my firewood pile.
+    </p>
+
+    <h2>Odin - German Wirehaired Pointer</h2>
+    <Image src={odin} alt="Odin, a German Wirehaired Pointer puppy" width={720} />
+    <p>
+      Born March 5, 2025, little Odie my newest outdoor buddy. I'm planning to focus mainly on hunting the chukar
+      hills and the snake with my new canine partner.
+    </p>
+  </div>
+</Base>
