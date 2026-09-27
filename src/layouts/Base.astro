@@ -28,7 +28,10 @@ const isActive = (href: string) => Astro.url.pathname.startsWith(href);
     <link rel="icon" href="/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=Courier+Prime:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <title>{fullTitle}</title>
   </head>
   <body>
@@ -71,7 +74,9 @@ const isActive = (href: string) => Astro.url.pathname.startsWith(href);
 
   .site-title {
     font-family: var(--display);
+    font-weight: 600;
     font-size: 1.6rem;
+    letter-spacing: -0.01em;
     color: var(--text);
     text-decoration: none;
   }
@@ -80,29 +85,34 @@ const isActive = (href: string) => Astro.url.pathname.startsWith(href);
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.25rem 1.25rem;
+    gap: 0.4rem 1.4rem;
   }
 
   .nav-link {
+    font-family: var(--display);
+    font-size: 1.05rem;
+    font-weight: 500;
     color: var(--muted);
     text-decoration: none;
-    padding: 0.25rem 0;
+    padding: 0.3rem 0;
     border-bottom: 2px solid transparent;
   }
 
   .nav-link:hover,
   .nav-link.active {
     color: var(--text);
-    border-bottom-color: var(--accent);
+    border-bottom-color: var(--rust);
   }
 
   .contact {
+    font-family: var(--display);
+    font-size: 1.05rem;
+    font-weight: 600;
     background: var(--accent);
     color: #fff;
     text-decoration: none;
-    padding: 0.4rem 1rem;
-    border-radius: 999px;
-    font-weight: 600;
+    padding: 0.4rem 1.1rem;
+    border-radius: var(--radius);
   }
 
   .contact:hover,
@@ -115,7 +125,9 @@ const isActive = (href: string) => Astro.url.pathname.startsWith(href);
     border-top: 1px solid var(--border);
     text-align: center;
     color: var(--muted);
-    font-size: 0.85rem;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.03em;
     padding: 1.5rem 1.25rem;
   }
 

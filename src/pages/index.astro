@@ -4,7 +4,7 @@ import Base from '../layouts/Base.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import { projects } from '../data/projects';
 import { byline, formatDate, getPosts } from '../lib/posts';
-import heroImage from '../assets/images/site/chase_pic.png';
+import heroImage from '../assets/images/site/odin_pheasant_hunt.jpg';
 
 const recent = [...(await getPosts('bookshelf')), ...(await getPosts('journal'))]
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
@@ -14,32 +14,35 @@ const recent = [...(await getPosts('bookshelf')), ...(await getPosts('journal'))
 <Base>
   <section class="hero">
     <div class="intro">
-      <h1>Product manager, building with AI.</h1>
+      <h1>Product Builder & Outdoor Enthusiest.</h1>
       <p>
-        I'm Fisher, a product manager in Boise, Idaho. I'm learning to build software with AI by shipping
-        small, real products in public, along with the PRDs, backlogs, and trade-offs behind them.
+        I'm Fisher, a product manager turned builder based in Boise, Idaho. I use this site to share the niche software I've built using 
+        the latest AI-DLC technologies and workflows.
       </p>
       <p>
-        Off the clock I'm usually on a river or in the chukar hills with my bird dog. I write about that in
-        the journal, and about what I'm reading on the bookshelf.
+        When I'm not building I'm usually out on a river or in the mountains; sometimes I am holed-up in my study. I share some of my (non-AI) writing about these topics and more in my 
+        sportsman's journal and on the bookshelf.
+      </p>
+      <p>
+      Thanks for visiting!
       </p>
       <div class="actions">
-        <a class="button" href="/projects/">See the projects</a>
-        <a class="button secondary" href="/about/">About me</a>
+        <a class="button" href="/projects/">See My Projects</a>
+        <a class="button secondary" href="/about/">About Me</a>
       </div>
     </div>
-    <Image src={heroImage} alt="Fisher kneeling with Chase, a Brittany, in the Idaho sagebrush hills" width={720} class="hero-image" />
+    <Image src={heroImage} alt="Fisher kneeling with Odin along the river after a hunt" width={720} class="hero-image" />
   </section>
 
   <section>
-    <h2 class="section-title">What I'm building</h2>
+    <h2 class="section-title">What I'm Building</h2>
     <div class="projects">
       {projects.map((project) => <ProjectCard project={project} />)}
     </div>
   </section>
 
   <section>
-    <h2 class="section-title">Recent writing</h2>
+    <h2 class="section-title">Recent Writing</h2>
     <ul class="recent">
       {
         recent.map((post) => (
@@ -60,7 +63,7 @@ const recent = [...(await getPosts('bookshelf')), ...(await getPosts('journal'))
 
 <style>
   section + section {
-    margin-top: 3.5rem;
+    margin-top: 2.5rem;
   }
 
   .hero {
@@ -89,11 +92,13 @@ const recent = [...(await getPosts('bookshelf')), ...(await getPosts('journal'))
 
   .button {
     display: inline-block;
-    padding: 0.6rem 1.2rem;
-    border-radius: 999px;
+    padding: 0.65rem 1.4rem;
+    border-radius: var(--radius);
     background: var(--accent);
     color: #fff;
     text-decoration: none;
+    font-family: var(--display);
+    font-size: 1.05rem;
     font-weight: 600;
   }
 
@@ -150,19 +155,23 @@ const recent = [...(await getPosts('bookshelf')), ...(await getPosts('journal'))
   }
 
   .kind {
-    font-size: 0.8rem;
+    font-family: var(--mono);
+    font-size: 0.75rem;
     color: var(--muted);
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.08em;
   }
 
   .title {
+    font-family: var(--display);
     font-weight: 600;
   }
 
   .recent .meta {
     color: var(--muted);
-    font-size: 0.9rem;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.02em;
   }
 
   @media (max-width: 800px) {

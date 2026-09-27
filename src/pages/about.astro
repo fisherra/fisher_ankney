@@ -21,14 +21,14 @@ import odin from '../assets/images/site/oden_dog_2.jpg';
       for. We would regularly fly fish our favorite stretch of the Au Sable just ten or fifteen minutes from our
       house nearly year round.
     </p>
-    <Image src={fishing2005} alt="Fishing as a kid in 2005" width={720} />
+    <Image class="photo" src={fishing2005} alt="Fishing as a kid in 2005" width={720} />
     <p>
       November 15th is a holy day for all in Northern Michigan School would always be closed for this, the
       opening day of rifle season. I took my first whitetail with my bow from a tree stand in the woods behind
       the house at 13 and occasionally I still make the pilgrimage back to hunt whitetails in the north woods
       because there's nothing quiet like it.
     </p>
-    <Image src={deer} alt="Whitetails from the north woods in 2006 and 2023" width={720} />
+    <Image class="photo" src={deer} alt="Whitetails from the north woods in 2006 and 2023" width={720} />
     <p>
       On the day after I graduated high school I moved to Colorado, calling Fort Collins home for the next
       decade as I focused on getting an education and a career. Unfortunately I left most of my hunting and
@@ -36,28 +36,101 @@ import odin from '../assets/images/site/oden_dog_2.jpg';
       In early 2022 I decided I had enough of it and I moved to Boise - a city in a state to which I had never
       been before. Since the move I have been making the most out of every season in this bountiful new home.
     </p>
+  </div>
 
-    <h2>Ronan - Australian Shepard</h2>
-    <Image src={ronan} alt="Ronan, an Australian Shepherd" width={720} />
-    <p>
-      I got Ronan from a random guy on Facebook looking to offload his now grown puppy because he "didn't have the
-      time for him anymore" in January of 2021. Ronan was about a year old and unfortunately very poorly behaved.
-      Our first six months were rough but we eventually established in him a good standard of canine citizenship.
-      I am now happy to say that Ronan is my best buddy, his heart, devotion and personality makes up for the few
-      stubborn behavioral shortcomings that remain.
-    </p>
-    <p>
-      Ronan is at his best on the river, always faithfully watching over me from the bank or the back of the
-      drift boat as I fish. He gives a mean bark and growl at anyone rude enough to low hole us -- and don't get
-      him started on the rafters. Ronan loves to come hiking and camping, requiring very little supervision I
-      often forget he's come along until he conspicuously steals all of the sticks from my firewood pile.
-    </p>
+  <div class="dogs">
+    <article class="dog-card">
+      <Image class="dog-photo" src={ronan} alt="Ronan, an Australian Shepherd" width={480} />
+      <div class="dog-body">
+        <h2>Ronan - Australian Shepard</h2>
+        <p>
+          I got Ronan from a random guy on Facebook looking to offload his now grown puppy because he "didn't
+          have the time for him anymore" in January of 2021. Ronan was about a year old and unfortunately very
+          poorly behaved. Our first six months were rough but we eventually established in him a good standard
+          of canine citizenship. I am now happy to say that Ronan is my best buddy, his heart, devotion and
+          personality makes up for the few stubborn behavioral shortcomings that remain.
+        </p>
+        <p>
+          Ronan is at his best on the river, always faithfully watching over me from the bank or the back of
+          the drift boat as I fish. He gives a mean bark and growl at anyone rude enough to low hole us -- and
+          don't get him started on the rafters. Ronan loves to come hiking and camping, requiring very little
+          supervision I often forget he's come along until he conspicuously steals all of the sticks from my
+          firewood pile.
+        </p>
+      </div>
+    </article>
 
-    <h2>Odin - German Wirehaired Pointer</h2>
-    <Image src={odin} alt="Odin, a German Wirehaired Pointer puppy" width={720} />
-    <p>
-      Born March 5, 2025, little Odie my newest outdoor buddy. I'm planning to focus mainly on hunting the chukar
-      hills and the snake with my new canine partner.
-    </p>
+    <article class="dog-card">
+      <Image class="dog-photo" src={odin} alt="Odin, a German Wirehaired Pointer puppy" width={480} />
+      <div class="dog-body">
+        <h2>Odin - German Wirehaired Pointer</h2>
+        <p>
+          Born March 5, 2025, little Odie my newest outdoor buddy. I'm planning to focus mainly on hunting the
+          chukar hills and the snake with my new canine partner.
+        </p>
+      </div>
+    </article>
   </div>
 </Base>
+
+<style>
+  .photo {
+    display: block;
+    width: 100%;
+    max-height: 420px;
+    object-fit: cover;
+    margin: 2rem auto;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .dogs {
+    max-width: var(--content);
+    margin: 3rem auto 0;
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .dog-card {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .dog-photo {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: var(--radius);
+  }
+
+  .dog-body h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1.3rem;
+  }
+
+  .dog-body p {
+    margin: 0 0 0.75rem;
+    font-size: 1.075rem;
+  }
+
+  .dog-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 640px) {
+    .dog-card {
+      grid-template-columns: 1fr;
+    }
+
+    .dog-photo {
+      height: 240px;
+    }
+  }
+</style>
