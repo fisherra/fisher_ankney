@@ -14,7 +14,7 @@
   --content: 720px;
   --wide: 1080px;
   --font: 'Source Serif 4', Georgia, 'Times New Roman', serif;
-  --display: 'Fraunces', Georgia, serif;
+  --display: 'Playfair Display', Georgia, serif;
   --mono: 'Courier Prime', 'Courier New', monospace;
 }
 
@@ -90,6 +90,26 @@ h3 {
 .page-intro h1 {
   margin: 0 0 0.5rem;
   font-size: 2.1rem;
+}
+
+.page-title {
+  text-align: center;
+  margin: 0 0 0.75rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.page-title h1 {
+  margin: 0;
+}
+
+/* A header with no intro line: the page's own text follows the rule at the intro line's distance. */
+.page-intro.title-only {
+  margin-bottom: 0.75rem;
+}
+
+.page-intro.title-only + .prose > :first-child {
+  margin-top: 0;
 }
 
 .page-intro p {

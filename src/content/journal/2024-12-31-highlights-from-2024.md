@@ -2,6 +2,7 @@
 title: "Highlights from 2024"
 date: 2024-12-31
 subtitle: "Year in Review"
+category: Report
 excerpt: "Another great year of outdoor adventures in the books. Highlights from the 2024 include my first steelhead, a big bull trout, limits of duck, and much more!"
 thumbnail: ../../assets/images/2024_journal/bulltrout.png
 ---

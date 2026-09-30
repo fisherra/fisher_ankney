@@ -1,0 +1,348 @@
+---
+// Sort + category filter controls for a PostList on the same page. Works by reordering and hiding the
+// list's existing <li>s, which carry the sort keys as data attributes (see PostList).
+import type { SortField } from '../lib/sort';
+
+interface Props {
+  /** Prefix for the remembered sort/filter choices in localStorage. */
+  storageKey: string;
+  fields: SortField[];
+  categories: { name: string; count: number }[];
+  total: number;
+  /** "books", "entries" - used in the count. */
+  noun: string;
+}
+
+const { storageKey, fields, categories, total, noun } = Astro.props;
+const config = { storageKey, noun, fields };
+const first = fields[0];
+---
+
+<div class="controls" data-config={JSON.stringify(config)}>
+  <div class="group">
+    {
+      fields.length > 1 ? (
+        <>
+          <label for="sort-field">Sort by</label>
+          <select id="sort-field">
+            {fields.map(({ value, label }) => <option value={value}>{label}</option>)}
+          </select>
+        </>
+      ) : (
+        <>
+          <label>Sort by</label>
+          <span class="sort-name">{first.label}</span>
+        </>
+      )
+    }
+    <button
+      id="sort-dir"
+      type="button"
+      data-dir={first.defaultDir}
+      aria-label={first[first.defaultDir]}
+      title={first[first.defaultDir]}
+    >
+      <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+        <path d="M3.5 6l4.5 4.5L12.5 6" />
+      </svg>
+    </button>
+  </div>
+
+  <div class="group filters" role="group" aria-label="Filter by category">
+    <label>Show</label>
+    {
+      categories.map(({ name, count }) => (
+        <button class="chip" type="button" data-category={name} aria-pressed="false">
+          {name} <span class="chip-count">{count}</span>
+        </button>
+      ))
+    }
+  </div>
+
+  <span class="count" id="count" aria-live="polite">{total} {noun}</span>
+</div>
+
+<p class="empty" id="empty" hidden>No {noun} match that filter.</p>
+
+<style>
+  .controls {
+    max-width: var(--content);
+    margin: 0 auto 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem 1.25rem;
+  }
+
+  .group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  label {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-right: 0.1rem;
+  }
+
+  .chip {
+    font-family: var(--display);
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+    line-height: 1.35;
+  }
+
+  select {
+    font-family: var(--display);
+    font-size: 1rem;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.4rem 0.7rem;
+  }
+
+  /* With only one field there is nothing to choose, so it is named rather than offered. */
+  .sort-name {
+    font-family: var(--display);
+    font-size: 1rem;
+    color: var(--text);
+  }
+
+  #sort-dir {
+    display: inline-flex;
+    padding: 0.25rem;
+    background: none;
+    border: 0;
+    color: var(--muted);
+    cursor: pointer;
+  }
+
+  #sort-dir:hover {
+    color: var(--accent);
+  }
+
+  #sort-dir svg {
+    width: 1.1rem;
+    height: 1.1rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform 0.2s ease;
+  }
+
+  #sort-dir[data-dir='asc'] svg {
+    transform: rotate(180deg);
+  }
+
+  .chip-count {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-left: 0.15rem;
+  }
+
+  .chip:hover {
+    border-color: var(--accent);
+  }
+
+  .chip[aria-pressed='true'] {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  .chip[aria-pressed='true'] .chip-count {
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  select:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+  }
+
+  .count {
+    margin-left: auto;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+  }
+
+  .empty {
+    max-width: var(--content);
+    margin: 0 auto 1.5rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  @media (max-width: 720px) {
+    .count {
+      margin-left: 0;
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  import type { SortField } from '../lib/sort';
+
+  interface Config {
+    storageKey: string;
+    noun: string;
+    fields: SortField[];
+  }
+
+  const controls = document.querySelector<HTMLElement>('.controls[data-config]');
+  const field = document.querySelector<HTMLSelectElement>('#sort-field');
+  const dirButton = document.querySelector<HTMLButtonElement>('#sort-dir');
+  const list = document.querySelector<HTMLUListElement>('.post-list');
+  const countEl = document.querySelector<HTMLElement>('#count');
+  const emptyEl = document.querySelector<HTMLElement>('#empty');
+  const moreButton = document.querySelector<HTMLButtonElement>('#show-more');
+  const chips = Array.from(document.querySelectorAll<HTMLButtonElement>('.chip'));
+
+  // `field` is absent when there is only one sort field to offer.
+  if (controls && dirButton && list && countEl && emptyEl) {
+    const config: Config = JSON.parse(controls.dataset.config ?? '{}');
+    const fields = new Map(config.fields.map((f) => [f.value, f]));
+    const items = Array.from(list.children) as HTMLLIElement[];
+    const SORT_KEY = `${config.storageKey}-sort`;
+    const FILTER_KEY = `${config.storageKey}-filter`;
+
+    let direction: 'asc' | 'desc' = config.fields[0].defaultDir;
+    // Empty means no filter at all, which shows everything.
+    let active = new Set<string>();
+    // How many matching items to show; "Show more" raises it, any new sort or filter resets it.
+    const PAGE = 10;
+    let limit = PAGE;
+
+    const num = (el: HTMLElement, name: string) => {
+      const raw = el.dataset[name];
+      return raw === undefined || raw === '' ? null : Number(raw);
+    };
+
+    const compare = (a: HTMLLIElement, b: HTMLLIElement, f: SortField, dir: number) => {
+      if (f.text) {
+        return (a.dataset[f.value] ?? '').localeCompare(b.dataset[f.value] ?? '') * dir;
+      }
+      const x = num(a, f.value);
+      const y = num(b, f.value);
+      // Missing values (an unrated book) always sit at the bottom, whichever way the sort runs.
+      if (x === null && y === null) return 0;
+      if (x === null) return 1;
+      if (y === null) return -1;
+      return (x - y) * dir;
+    };
+
+    const save = (key: string, value: string) => {
+      try {
+        localStorage.setItem(key, value);
+      } catch {
+        // Not being able to remember the choice is not worth failing over.
+      }
+    };
+
+    const read = (key: string) => {
+      try {
+        return localStorage.getItem(key);
+      } catch {
+        // Private browsing or blocked storage: fall back to the defaults.
+        return null;
+      }
+    };
+
+    const apply = () => {
+      const f = fields.get(field?.value ?? '') ?? config.fields[0];
+      const dir = direction === 'asc' ? 1 : -1;
+      // `items` stays in the server's order (newest first), and sort is stable, so ties keep that order.
+      const sorted = [...items].sort((a, b) => compare(a, b, f, dir));
+      // Reassigning in order moves the existing nodes; nothing is re-rendered.
+      for (const item of sorted) list.appendChild(item);
+
+      // Walk in sorted order so the first page is the top of whatever the reader chose.
+      let shown = 0;
+      for (const item of sorted) {
+        const match = active.size === 0 || active.has(item.dataset.category ?? '');
+        if (match) shown += 1;
+        item.hidden = !match || shown > limit;
+      }
+      if (moreButton) moreButton.hidden = shown <= limit;
+
+      const noun = config.noun;
+      countEl.textContent = shown === items.length ? `${items.length} ${noun}` : `${shown} of ${items.length} ${noun}`;
+      emptyEl.hidden = shown > 0;
+
+      const label = f[direction];
+      dirButton.setAttribute('aria-label', label);
+      dirButton.title = label;
+      dirButton.dataset.dir = direction;
+
+      for (const chip of chips) {
+        chip.setAttribute('aria-pressed', String(active.has(chip.dataset.category ?? '')));
+      }
+
+      save(SORT_KEY, `${f.value}|${direction}`);
+      save(FILTER_KEY, [...active].join(','));
+    };
+
+    const storedSort = read(SORT_KEY);
+    if (storedSort) {
+      const [key, dir] = storedSort.split('|');
+      if (fields.has(key) && (dir === 'asc' || dir === 'desc')) {
+        if (field) field.value = key;
+        direction = dir;
+      }
+    }
+
+    const known = new Set(chips.map((c) => c.dataset.category ?? ''));
+    const storedFilter = read(FILTER_KEY);
+    if (storedFilter) {
+      active = new Set(storedFilter.split(',').filter((c) => known.has(c)));
+    }
+
+    apply();
+
+    if (field) {
+      field.addEventListener('change', () => {
+        direction = fields.get(field.value)?.defaultDir ?? 'desc';
+        limit = PAGE;
+        apply();
+      });
+    }
+
+    dirButton.addEventListener('click', () => {
+      direction = direction === 'asc' ? 'desc' : 'asc';
+      limit = PAGE;
+      apply();
+    });
+
+    for (const chip of chips) {
+      chip.addEventListener('click', () => {
+        const cat = chip.dataset.category ?? '';
+        if (active.has(cat)) active.delete(cat);
+        else active.add(cat);
+        limit = PAGE;
+        apply();
+      });
+    }
+
+    moreButton?.addEventListener('click', () => {
+      limit += PAGE;
+      apply();
+    });
+  }
+</script>

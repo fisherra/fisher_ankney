@@ -20,7 +20,13 @@ const postFields = ({ image }: SchemaContext) => ({
 
 const journal = defineCollection({
   loader: loader('journal'),
-  schema: (ctx) => z.object({ ...postFields(ctx), subtitle: z.string() }),
+  schema: (ctx) =>
+    z.object({
+      ...postFields(ctx),
+      subtitle: z.string(),
+      // Report: seasonal field notes. Essay: a standalone piece. Review: gear, places, guides.
+      category: z.enum(['Report', 'Essay', 'Review']),
+    }),
 });
 
 const bookshelf = defineCollection({

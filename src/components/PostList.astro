@@ -14,6 +14,7 @@ const { posts } = Astro.props;
   {
     posts.map((post) => (
       <li
+        data-date={post.data.date.valueOf()}
         data-title={sortKey(post.data.title)}
         data-read={post.data.date.valueOf()}
         data-published={'published' in post.data ? post.data.published : undefined}
@@ -30,6 +31,7 @@ const { posts } = Astro.props;
           <div>
             <h2>
               {post.data.title}
+              {'published' in post.data && <Stars rating={post.data.rating} class="card-stars" />}
               {'category' in post.data && <span class="category">{post.data.category}</span>}
               {post.data.draft && <span class="status" data-status="Planned">Draft</span>}
             </h2>
@@ -37,7 +39,6 @@ const { posts } = Astro.props;
               {byline(post)} · {formatDate(post.data.date)}
               {'published' in post.data && <> · published {formatYear(post.data.published)}</>}
             </p>
-            {'published' in post.data && <Stars rating={post.data.rating} class="card-stars" />}
             <p class="excerpt">{post.data.excerpt}</p>
           </div>
         </a>
@@ -46,14 +47,77 @@ const { posts } = Astro.props;
   }
 </ul>
 
+{/* Shown by SortFilter once more than a page of posts match. Without JS every post is listed. */}
+<div class="more">
+  <button id="show-more" type="button" hidden>
+    Show more
+    <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+      <path d="M3.5 6l4.5 4.5L12.5 6" />
+    </svg>
+  </button>
+</div>
+
 <style>
   .post-list {
     list-style: none;
     margin: 0 auto;
     padding: 0;
-    max-width: 960px;
+    max-width: var(--content);
     display: grid;
     gap: 1.5rem;
+  }
+
+  .more {
+    max-width: var(--content);
+    margin: 2.5rem auto 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Same thin chevron as the sort direction toggle, in a quiet outlined box. */
+  #show-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--display);
+    font-size: 1.2rem;
+    color: var(--text);
+    background: var(--bg);
+    border: 1px solid var(--text);
+    border-radius: 4px;
+    padding: 0.85rem 2.75rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  #show-more[hidden] {
+    display: none;
+  }
+
+  #show-more svg {
+    width: 1.1rem;
+    height: 1.1rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform 0.2s ease;
+  }
+
+  #show-more:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  #show-more:hover svg {
+    transform: translateY(2px);
+  }
+
+  #show-more:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
   }
 
   a {
@@ -104,9 +168,8 @@ const { posts } = Astro.props;
     letter-spacing: 0.02em;
   }
 
-  .card-stars {
-    display: block;
-    margin: -0.2rem 0 0.6rem;
+  :global(.card-stars) {
+    font-size: 1.15rem;
   }
 
   .category {

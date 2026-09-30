@@ -11,27 +11,27 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: 'fiddle',
-    name: 'Fiddle',
-    tagline: 'A practice toolkit for old-time and folk fiddlers',
+    id: 'fiddlers-fancy',
+    name: "Fiddler's Fancy",
+    tagline: 'A living repository for fiddle music',
     description:
-      'A searchable archive of public-domain fiddle tunes with sheet music, playback, and fingering tabs, plus a tuner that runs off your computer’s microphone.',
+      'A growing archive of fiddle tunes with sheet music and tabs, plus a tuner that runs off your computer’s microphone.',
     status: 'Planned',
   },
   {
-    id: 'board',
-    name: 'Board',
-    tagline: 'My public product backlog',
+    id: 'personal-project-builder',
+    name: 'Project Builder',
+    tagline: 'My AI-DLC workflow, made visible',
     description:
-      'The real backlog behind every project on this site: prioritized, scored, and open to read. It uses AI to help draft user stories from one-line ideas.',
+      'The personal setup behind every project on this site: skills, workflows, and a project tracker with a kanban board and feature list for each one. Swap between projects to see its board.',
     status: 'Planned',
   },
   {
-    id: 'reader',
-    name: 'Reader',
-    tagline: 'Annotated public-domain books',
+    id: 'page-quest',
+    name: 'Page Quest',
+    tagline: 'Gamified reading tracker',
     description:
-      'A reading tool for classic texts. Highlight a passage and get plain-language explanations, historical context, and definitions for archaic words.',
+      'Turns reading into a game: log daily summaries, review books, track your TBR, and level up a gameboard roadmap with badges and Wrapped-style insights — built to reward understanding, not just pages turned.',
     status: 'Planned',
   },
 ];

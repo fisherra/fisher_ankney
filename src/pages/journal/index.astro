@@ -1,18 +1,40 @@
 ---
 import Base from '../../layouts/Base.astro';
 import PostList from '../../components/PostList.astro';
+import SortFilter from '../../components/SortFilter.astro';
 import { getPosts } from '../../lib/posts';
+import type { SortField } from '../../lib/sort';
 
 const posts = await getPosts('journal');
+
+const fields: SortField[] = [
+  { value: 'date', label: 'Date published', desc: 'Newest first', asc: 'Oldest first', defaultDir: 'desc' },
+];
+
+const categories = (['Report', 'Essay', 'Review'] as const).map((name) => ({
+  name,
+  count: posts.filter((p) => p.data.category === name).length,
+}));
 ---
 
 <Base title="Sportsman's Journal" description="Quarterly field reports from hunting and fishing across Idaho.">
   <div class="page-intro">
-    <h1>Sportsman's Journal</h1>
+    <div class="page-title">
+      <h1>Sportsman's Journal</h1>
+    </div>
     <p>
       Quarterly dispatches from Idaho's rivers and hills — hunting and fishing, season by season, the successes
       and, more importantly, the failures.
     </p>
   </div>
+
+  <SortFilter
+    storageKey="journal"
+    fields={fields}
+    categories={categories}
+    total={posts.length}
+    noun="entries"
+  />
+
   <PostList posts={posts} />
 </Base>
