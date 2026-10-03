@@ -6,7 +6,6 @@ category: "History"
 published: -430
 excerpt: "The Histories with maps on every spread and appendices in the back - the apparatus that makes Herodotus navigable."
 thumbnail: ../../assets/images/book_reviews/landmark_herodotus.jpg
-draft: true
 ---
 
 <!-- SCAFFOLD - not yet written.

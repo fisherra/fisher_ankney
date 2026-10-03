@@ -6,7 +6,6 @@ category: "History"
 published: 2018
 excerpt: "A thousand years of the vanished empire wedged between France and Germany."
 thumbnail: ../../assets/images/book_reviews/the_burgundians.jpg
-draft: true
 ---
 
 <!-- SCAFFOLD - not yet written.

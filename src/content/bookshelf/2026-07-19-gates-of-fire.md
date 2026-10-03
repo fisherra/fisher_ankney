@@ -6,7 +6,6 @@ category: "Literature"
 published: 1998
 excerpt: "Thermopylae from inside the Spartan line, narrated by the only man left to tell it."
 thumbnail: ../../assets/images/book_reviews/gates_of_fire.jpg
-draft: true
 ---
 
 <!-- SCAFFOLD - not yet written.

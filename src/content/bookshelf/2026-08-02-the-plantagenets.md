@@ -6,7 +6,6 @@ category: "History"
 published: 2012
 excerpt: "Two centuries of the dynasty that made England, from Henry II to the fall of Richard II."
 thumbnail: ../../assets/images/book_reviews/the_plantagenets.jpg
-draft: true
 ---
 
 <!-- SCAFFOLD - not yet written.

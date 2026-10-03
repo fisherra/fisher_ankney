@@ -6,7 +6,6 @@ category: "Literature"
 published: -458
 excerpt: "Three plays in which blood vengeance gives way, barely, to the rule of law."
 thumbnail: ../../assets/images/book_reviews/the_oresteia.jpg
-draft: true
 ---
 
 <!-- SCAFFOLD - not yet written.

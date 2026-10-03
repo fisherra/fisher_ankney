@@ -7,7 +7,6 @@ published: 1878
 rating: 5
 excerpt: "Tolstoy's novel of adultery, faith, and a man learning to mow hay - and my favourite book."
 thumbnail: ../../assets/images/book_reviews/anna_karenina.jpg
-draft: true
 ---
 
 <!-- SCAFFOLD - not yet written.

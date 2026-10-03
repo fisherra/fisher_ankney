@@ -6,7 +6,6 @@ category: "Literature"
 published: 1886
 excerpt: "Ninety pages on a life reconsidered far too late."
 thumbnail: ../../assets/images/book_reviews/death_of_ivan_ilyich.jpg
-draft: true
 ---
 
 <!-- SCAFFOLD - not yet written.

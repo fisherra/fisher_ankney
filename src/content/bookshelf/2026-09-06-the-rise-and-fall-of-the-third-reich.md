@@ -6,7 +6,6 @@ category: "History"
 published: 1960
 excerpt: "Twelve hundred pages on Nazi Germany from a correspondent who stood there and watched it happen."
 thumbnail: ../../assets/images/book_reviews/rise_and_fall_third_reich.jpg
-draft: true
 ---
 
 <!-- SCAFFOLD - not yet written.

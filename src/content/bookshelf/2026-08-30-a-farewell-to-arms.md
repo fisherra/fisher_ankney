@@ -6,7 +6,6 @@ category: "Literature"
 published: 1929
 excerpt: "Love and the Italian front in Hemingway's flattest, hardest prose."
 thumbnail: ../../assets/images/book_reviews/a_farewell_to_arms.jpg
-draft: true
 ---
 
 <!-- SCAFFOLD - not yet written.

@@ -6,7 +6,6 @@ category: "History"
 published: 1970
 excerpt: "Norman Sicily at its height - the second half of Norwich's history of the Hauteville kingdom."
 thumbnail: ../../assets/images/book_reviews/kingdom_in_the_sun.jpg
-draft: true
 ---
 
 <!-- SCAFFOLD - not yet written.
