@@ -144,6 +144,44 @@ h3 {
   box-shadow: var(--shadow);
 }
 
+/* A lone portrait photo stays a sensible height instead of filling the screen. */
+.prose img {
+  width: auto;
+  max-height: min(80vh, 640px);
+}
+
+/* Two photos side by side: <div class="photo-pair"> around two markdown images (blank lines inside the div).
+   Both are cropped to the same shape - landscape by default, portrait with `tall`. */
+.photo-pair {
+  margin: 2rem 0;
+}
+
+.photo-pair p {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.prose .photo-pair img {
+  width: 100%;
+  height: auto;
+  max-height: none;
+  margin: 0;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.photo-pair.tall img {
+  aspect-ratio: 3 / 4;
+}
+
+@media (max-width: 480px) {
+  .photo-pair p {
+    gap: 0.5rem;
+  }
+}
+
 .prose blockquote {
   margin: 1.5rem 0;
   padding-left: 1rem;

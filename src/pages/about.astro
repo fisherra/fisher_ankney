@@ -1,30 +1,31 @@
 ---
-import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
-import fishing2005 from '../assets/images/site/fishing_2005.jpeg';
-import deer from '../assets/images/site/deer.png';
 
 const roles = [
   {
     org: 'CCT',
+    title: 'Senior Product Manager',
     logo: '/logos/cct.png',
     dates: '2026 — Present',
     note: 'Own product strategy for Insight Cash, the cage, vault, and revenue-audit product in CCT’s Casino Insight platform. Shaping how we use AI-assisted development while migrating a legacy WinForms application to a multi-tenant web app on AWS.',
   },
   {
     org: 'DoubleVerify',
+    title: 'Product Manager',
     logo: '/logos/doubleverify.svg',
     dates: '2023 — 2026',
     note: 'Owned the strategy for a four-product advertising suite, grown from $39M to $50M in ARR. Took Attention Measurement for Marketplaces from first discovery call to GA.',
   },
   {
     org: 'Oracle',
+    title: 'Product Manager',
     logo: '/logos/oracle.png',
     dates: '2022 — 2023',
     note: 'Replaced seven disjointed internal configuration tools with a single self-service interface, saving roughly 120 FTE hours a month.',
   },
   {
     org: 'Gravitate',
+    title: 'Product Manager',
     logo: '/logos/gravitate.png',
     dates: '2020 — 2022',
     note: 'First PM at a pre-seed startup; $0 to $1M+ ARR in under two years. Also the ML subject-matter expert behind its fuel demand forecasting and best-price purchasing algorithms.',
@@ -34,7 +35,7 @@ const roles = [
 
 <Base
   title="About"
-  description="Fisher Ankney is a product manager and builder in Boise, Idaho — a statistician by training who ships the code."
+  description="Fisher Ankney is a product manager in Boise, Idaho: a statistician by training and an outdoorsman by upbringing."
 >
   <div class="page-intro title-only">
     <div class="page-title">
@@ -43,18 +44,26 @@ const roles = [
   </div>
 
   <div class="prose">
-
     <p>
-    more about me to come soon. 
+      I grew up in Grayling, in northern Michigan, where my parents raised me to hunt and fish. The town has a deep
+      outdoors heritage: Fred Bear opened his archery shop there, Trout Unlimited was founded there, and the
+      ubiquitous Adams dry fly was invented a few miles down the road.
     </p>
-
-    <p class="resume-line">
-      <a class="button" href="/fisher-ankney-resume.pdf" download>Download my resume (PDF)</a>
+    <p>
+      The day after I graduated high school, I moved to Colorado. In Fort Collins I studied geology at Colorado State
+      and spent two years as a data analyst with the U.S. Geological Survey, working in the Colorado Rockies. That
+      work turned me toward statistics, which took me to Oklahoma State for a master's degree. I taught introductory
+      statistics there, learned a great deal, and made the jump into tech.
+    </p>
+    <p>
+      In early 2022 I moved to Boise, which I now call home. Since then I've managed a range of technical products,
+      from advertising measurement to casino finance. Today I'm a Senior Product Manager at CCT, where I own a
+      financial operations and audit product.
     </p>
   </div>
 
   <section class="timeline-wrap">
-    <h2 class="section-title">Where I've built products</h2>
+    <h2 class="section-title">Where I've worked</h2>
     <ol class="timeline">
       {
         roles.map((role) => (
@@ -76,40 +85,20 @@ const roles = [
     </ol>
   </section>
 
-  <div class="prose away">
-    <h2 class="section-title">Away from the desk</h2>
+  <div class="prose closing">
     <p>
-      Growing up in northern Michigan I was raised on a steady diet of hunting and fishing. My home town of
-      Grayling boasts a rich outdoors heritage — it's where Fred Bear opened up shop in 1933, and 26 years later
-      it's where Trout Unlimited was founded. Hell, even the ubiquitous Adams fly was invented just a few miles
-      down the road on the Boardman River.
+      I'm always open to new opportunities. My full resume is below, and the
+      <a href="/contact/">contact form</a> is the best way to get in touch.
     </p>
-    <p>
-      My parents had me out in the field back before I can remember, a service that I will forever be grateful
-      for. We would regularly fly fish our favorite stretch of the Au Sable just ten or fifteen minutes from our
-      house nearly year round.
-    </p>
-    <Image class="photo" src={fishing2005} alt="Fishing as a kid in 2005" width={720} />
-    <p>
-      November 15th is a holy day for all in northern Michigan. School would always be closed for this, the
-      opening day of rifle season. I took my first whitetail with my bow from a tree stand in the woods behind
-      the house at 13, and occasionally I still make the pilgrimage back to hunt whitetails in the north woods
-      because there's nothing quite like it.
-    </p>
-    <Image class="photo" src={deer} alt="Whitetails from the north woods in 2006 and 2023" width={720} />
-    <p>
-      The day after I graduated high school I moved to Colorado, calling Fort Collins home for the next decade as
-      I focused on getting an education and a career. Unfortunately I left most of my hunting and fishing behind
-      during this time, only taking the occasional day trip to fish the overcrowded Poudre River. In early 2022 I
-      decided I'd had enough of that and moved to Boise — a city in a state I had never set foot in before. Since
-      the move I've been making the most out of every season in this bountiful new home.
+    <p class="resume-line">
+      <a class="button" href="/fisher-ankney-resume.pdf" download>Download my resume (PDF)</a>
     </p>
   </div>
 </Base>
 
 <style>
   .resume-line {
-    margin-top: 2rem;
+    margin-top: 1.25rem;
   }
 
   .button {
@@ -135,7 +124,7 @@ const roles = [
   }
 
   /* Same width and gap above as the work section, which has no rule over it either. */
-  .away {
+  .closing {
     max-width: var(--column);
     margin-top: 3rem;
   }
@@ -214,14 +203,4 @@ const roles = [
     font-size: 1.025rem;
   }
 
-
-  .photo {
-    display: block;
-    width: 100%;
-    max-height: 420px;
-    object-fit: cover;
-    margin: 2rem auto;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-  }
 </style>
