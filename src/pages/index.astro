@@ -14,35 +14,32 @@ const recent = [...(await getPosts('bookshelf')), ...(await getPosts('journal'))
 <Base>
   <section class="hero">
     <div class="intro">
-      <h1>Product Builder & Outdoorsman.</h1>
+      <h1>Product Manager & Outdoorsman.</h1>
       <p>
-        I'm Fisher, a product manager and builder based in Boise, Idaho. I use this site to share the niche software I'm building using 
-        the latest AI-DLC technologies and workflows.
+        I'm Fisher, a product manager based in Boise, Idaho. I use this site to share the niche software projects that
+        I'm building for my own personal use.
       </p>
       <p>
-        When I'm not building products I'm usually out on a river or in the mountains; sometimes holed-up in my study. I share some of my (non-AI) writing about these topics and more in my 
+        When I'm not building products professionally, or for fun, I'm usually out on a river or in the mountains;
+        sometimes holed-up in my study. I share some of my (non-AI) writing about these topics and more in my
         sportsman's journal and on the bookshelf.
       </p>
       <p>
       Thanks for visiting!
       </p>
-      <div class="actions">
-        <a class="button" href="/projects/">See My Projects</a>
-        <a class="button secondary" href="/about/">About Me</a>
-      </div>
     </div>
     <Image src={heroImage} alt="Fisher kneeling with Odin along the river after a hunt" width={720} class="hero-image" />
   </section>
 
   <section>
-    <h2 class="section-title">What I'm Building</h2>
+    <h2 class="section-title">What I've Been Working On Lately</h2>
     <div class="projects">
       {projects.map((project) => <ProjectCard project={project} />)}
     </div>
   </section>
 
   <section>
-    <h2 class="section-title">Recent Writing</h2>
+    <h2 class="section-title">My Recent Writing</h2>
     <ul class="recent">
       {
         recent.map((post) => (
@@ -81,41 +78,6 @@ const recent = [...(await getPosts('bookshelf')), ...(await getPosts('journal'))
   .intro p {
     font-size: 1.1rem;
     margin: 0 0 1rem;
-  }
-
-  .actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-top: 1.75rem;
-  }
-
-  .button {
-    display: inline-block;
-    padding: 0.65rem 1.4rem;
-    border-radius: var(--radius);
-    background: var(--accent);
-    color: #fff;
-    text-decoration: none;
-    font-family: var(--display);
-    font-size: 1.05rem;
-    font-weight: 600;
-  }
-
-  .button:hover {
-    background: var(--accent-hover);
-    color: #fff;
-  }
-
-  .button.secondary {
-    background: transparent;
-    color: var(--accent);
-    border: 1px solid var(--accent);
-  }
-
-  .button.secondary:hover {
-    background: var(--accent-soft);
-    color: var(--accent);
   }
 
   .hero-image {

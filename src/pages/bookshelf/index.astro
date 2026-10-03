@@ -31,7 +31,12 @@ const categories = (['Outdoors', 'Literature', 'History'] as const).map((name) =
     <div class="page-title">
       <h1>My Bookshelf</h1>
     </div>
-    <p>Notes and reviews on what I'm reading, mostly history and the outdoors, sometimes further afield.</p>
+    <p>
+      Book Reviews! I'm not a fan of amazon / goodreads, so I made my own.
+      I mostly read history, classics, and outdoor lit, and even within those genres my interests are narrow. 
+      
+      Feel free to take a look and see if we've read the same book!
+    </p>
   </div>
 
   <SortFilter storageKey="bookshelf" fields={fields} categories={categories} total={posts.length} noun="books" />

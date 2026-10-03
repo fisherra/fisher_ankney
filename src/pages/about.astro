@@ -8,28 +8,24 @@ const roles = [
   {
     org: 'CCT',
     logo: '/logos/cct.png',
-    title: 'Senior Product Manager, Insight Cash',
     dates: '2026 — Present',
     note: 'Own product strategy for Insight Cash, the cage, vault, and revenue-audit product in CCT’s Casino Insight platform. Shaping how we use AI-assisted development while migrating a legacy WinForms application to a multi-tenant web app on AWS.',
   },
   {
     org: 'DoubleVerify',
     logo: '/logos/doubleverify.svg',
-    title: 'Product Manager',
     dates: '2023 — 2026',
     note: 'Owned the strategy for a four-product advertising suite, grown from $39M to $50M in ARR. Took Attention Measurement for Marketplaces from first discovery call to GA.',
   },
   {
     org: 'Oracle',
     logo: '/logos/oracle.png',
-    title: 'Product Manager, Moat',
     dates: '2022 — 2023',
     note: 'Replaced seven disjointed internal configuration tools with a single self-service interface, saving roughly 120 FTE hours a month.',
   },
   {
     org: 'Gravitate',
     logo: '/logos/gravitate.png',
-    title: 'Founding Product Manager',
     dates: '2020 — 2022',
     note: 'First PM at a pre-seed startup; $0 to $1M+ ARR in under two years. Also the ML subject-matter expert behind its fuel demand forecasting and best-price purchasing algorithms.',
   },
@@ -47,35 +43,9 @@ const roles = [
   </div>
 
   <div class="prose">
-    <p>
-      Most of my week is ordinary product work — discovery calls, roadmaps, pricing, launches — but I don't hand
-      a problem to engineering until I've pulled the data myself and built enough of a prototype to know the idea
-      holds up. AI-assisted development has made that loop fast enough to be the default rather than the
-      exception, so what I bring to a spec review these days is usually a working thing, not a wireframe.
-    </p>
 
     <p>
-      That habit comes from the way I got here. I trained as a statistician: a master's from Oklahoma State, two
-      years teaching stats to auditorium-sized undergraduate sections, and before that two years designing
-      experiments and fitting models for the USGS. It means I can read the paper, check the math, and tell you
-      whether a lift is real or an artifact of how somebody sampled. For the four years I spent in ad
-      measurement that <em>was</em> the job, and it's no less true now that the product is a ledger which has to
-      reconcile to the dollar.
-    </p>
-
-    <p>
-      The upshot is that I can sit on either side of the table. At Gravitate I was the founding PM at a pre-seed
-      startup and also its ML subject-matter expert, researching and coding the forecasting and pricing
-      algorithms that became the product. At DoubleVerify I owned a $50M suite of advertising products and took
-      Attention Measurement for Marketplaces from discovery through GA.
-    </p>
-
-    <p>
-      These days I'm senior product manager for Insight Cash at CCT, where casinos run their cage, vault, and
-      revenue audit. I'm shaping how we use AI-assisted development, migrating a legacy WinForms application to
-      a multi-tenant web app on an AWS backend, and running discovery with casino accounting, finance, and audit
-      teams across the country. If you're building something where the measurement is the hard part, I'd like to
-      hear about it.
+    more about me to come soon. 
     </p>
 
     <p class="resume-line">
@@ -84,7 +54,7 @@ const roles = [
   </div>
 
   <section class="timeline-wrap">
-    <h2 class="section-title">Where I've worked</h2>
+    <h2 class="section-title">Where I've built products</h2>
     <ol class="timeline">
       {
         roles.map((role) => (
@@ -104,15 +74,10 @@ const roles = [
         ))
       }
     </ol>
-    <p class="credentials">
-      M.S. Statistics, Oklahoma State University — Outstanding Master's Graduate, 2020 · B.S. Geology c.
-      Geophysics, Colorado State University — Honor Senior, 2016 · Pragmatic Institute PMC Level II
-    </p>
   </section>
 
-  <div class="prose">
-    <hr />
-    <h2>Away from the desk</h2>
+  <div class="prose away">
+    <h2 class="section-title">Away from the desk</h2>
     <p>
       Growing up in northern Michigan I was raised on a steady diet of hunting and fishing. My home town of
       Grayling boasts a rich outdoors heritage — it's where Fred Bear opened up shop in 1933, and 26 years later
@@ -165,8 +130,14 @@ const roles = [
   }
 
   .timeline-wrap {
-    max-width: var(--content);
+    max-width: var(--column);
     margin: 3rem auto 0;
+  }
+
+  /* Same width and gap above as the work section, which has no rule over it either. */
+  .away {
+    max-width: var(--column);
+    margin-top: 3rem;
   }
 
   .timeline {
@@ -243,11 +214,6 @@ const roles = [
     font-size: 1.025rem;
   }
 
-  .credentials {
-    margin: 1.5rem 0 0;
-    color: var(--muted);
-    font-size: 0.95rem;
-  }
 
   .photo {
     display: block;

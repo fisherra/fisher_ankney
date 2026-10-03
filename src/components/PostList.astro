@@ -31,9 +31,12 @@ const { posts } = Astro.props;
           <div>
             <h2>
               {post.data.title}
-              {'published' in post.data && <Stars rating={post.data.rating} class="card-stars" />}
-              {'category' in post.data && <span class="category">{post.data.category}</span>}
-              {post.data.draft && <span class="status" data-status="Planned">Draft</span>}
+              {/* Rating and tags wrap as one unit, so a long title never strands a single tag. */}
+              <span class="tags">
+                {'published' in post.data && <Stars rating={post.data.rating} class="card-stars" />}
+                {'category' in post.data && <span class="category">{post.data.category}</span>}
+                {post.data.draft && <span class="status" data-status="Planned">Draft</span>}
+              </span>
             </h2>
             <p class="meta">
               {byline(post)} · {formatDate(post.data.date)}
@@ -62,13 +65,13 @@ const { posts } = Astro.props;
     list-style: none;
     margin: 0 auto;
     padding: 0;
-    max-width: var(--content);
+    max-width: var(--column);
     display: grid;
     gap: 1.5rem;
   }
 
   .more {
-    max-width: var(--content);
+    max-width: var(--column);
     margin: 2.5rem auto 0;
     display: flex;
     justify-content: center;
@@ -158,6 +161,15 @@ const { posts } = Astro.props;
     align-items: center;
     gap: 0.5rem;
     flex-wrap: wrap;
+  }
+
+  /* A flex item of the title row: it drops below the title as a whole, and only wraps inside itself
+     when it is wider than the card (on a phone). */
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
   }
 
   .meta {

@@ -12,6 +12,8 @@
   --radius: 6px;
   --shadow: 0 2px 16px rgba(36, 26, 15, 0.1);
   --content: 720px;
+  /* index pages (projects, journal, bookshelf, about): a little wider than an article's reading measure */
+  --column: 820px;
   --wide: 1080px;
   --font: 'Source Serif 4', Georgia, 'Times New Roman', serif;
   --display: 'Playfair Display', Georgia, serif;
@@ -83,7 +85,7 @@ h3 {
 }
 
 .page-intro {
-  max-width: var(--content);
+  max-width: var(--column);
   margin: 0 auto 2.5rem;
 }
 
@@ -108,6 +110,10 @@ h3 {
   margin-bottom: 0.75rem;
 }
 
+.page-intro.title-only + .prose {
+  max-width: var(--column);
+}
+
 .page-intro.title-only + .prose > :first-child {
   margin-top: 0;
 }
@@ -116,6 +122,13 @@ h3 {
   margin: 0;
   color: var(--muted);
   font-size: 1.1rem;
+}
+
+/* Under a centred title the intro centres too, held narrower than the column so its lines stay readable. */
+.page-title + p {
+  max-width: 42rem;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .prose {

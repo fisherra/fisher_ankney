@@ -23,14 +23,14 @@ const first = fields[0];
     {
       fields.length > 1 ? (
         <>
-          <label for="sort-field">Sort by</label>
+          <label class="label" for="sort-field">Sort by</label>
           <select id="sort-field">
             {fields.map(({ value, label }) => <option value={value}>{label}</option>)}
           </select>
         </>
       ) : (
         <>
-          <label>Sort by</label>
+          <span class="label">Sort by</span>
           <span class="sort-name">{first.label}</span>
         </>
       )
@@ -48,8 +48,8 @@ const first = fields[0];
     </button>
   </div>
 
-  <div class="group filters" role="group" aria-label="Filter by category">
-    <label>Show</label>
+  <div class="group" role="group" aria-labelledby="filter-label">
+    <span class="label" id="filter-label">Show</span>
     {
       categories.map(({ name, count }) => (
         <button class="chip" type="button" data-category={name} aria-pressed="false">
@@ -65,29 +65,27 @@ const first = fields[0];
 <p class="empty" id="empty" hidden>No {noun} match that filter.</p>
 
 <style>
+  /* One row: sort, filters, then the count pushed right. Every item is centred on the same line. */
   .controls {
-    max-width: var(--content);
+    max-width: var(--column);
     margin: 0 auto 1.5rem;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.6rem 1.25rem;
+    gap: 0.6rem 1.75rem;
   }
 
   .group {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.45rem;
   }
 
-  label {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+  .label {
+    font-size: 1rem;
     color: var(--muted);
-    margin-right: 0.1rem;
+    margin-right: 0.2rem;
   }
 
   .chip {
@@ -176,24 +174,15 @@ const first = fields[0];
 
   .count {
     margin-left: auto;
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.06em;
+    font-size: 1rem;
     color: var(--muted);
   }
 
   .empty {
-    max-width: var(--content);
+    max-width: var(--column);
     margin: 0 auto 1.5rem;
     color: var(--muted);
     font-style: italic;
-  }
-
-  @media (max-width: 720px) {
-    .count {
-      margin-left: 0;
-      width: 100%;
-    }
   }
 </style>
 
@@ -283,7 +272,8 @@ const first = fields[0];
       if (moreButton) moreButton.hidden = shown <= limit;
 
       const noun = config.noun;
-      countEl.textContent = shown === items.length ? `${items.length} ${noun}` : `${shown} of ${items.length} ${noun}`;
+      countEl.textContent =
+        shown === items.length ? `${items.length} ${noun}` : `${shown} of ${items.length} ${noun}`;
       emptyEl.hidden = shown > 0;
 
       const label = f[direction];
