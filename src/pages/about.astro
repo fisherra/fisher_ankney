@@ -4,38 +4,39 @@ import Base from '../layouts/Base.astro';
 const roles = [
   {
     org: 'CCT',
-    title: 'Senior Product Manager',
     logo: '/logos/cct.png',
+    url: 'https://cct.io/insight-cash/',
     dates: '2026 — Present',
-    note: 'Own product strategy for Insight Cash, the cage, vault, and revenue-audit product in CCT’s Casino Insight platform. Shaping how we use AI-assisted development while migrating a legacy WinForms application to a multi-tenant web app on AWS.',
-  },
+    note: 'I own Insight Cash, an enterprise solution for casinos that touches all-things-cash.'  },
   {
     org: 'DoubleVerify',
-    title: 'Product Manager',
     logo: '/logos/doubleverify.svg',
+    url: 'https://doubleverify.com/capabilities-performance/',
     dates: '2023 — 2026',
-    note: 'Owned the strategy for a four-product advertising suite, grown from $39M to $50M in ARR. Took Attention Measurement for Marketplaces from first discovery call to GA.',
+    note: 'I owned the performance targeting products for programmatic advertising on the open web.',
   },
   {
     org: 'Oracle',
-    title: 'Product Manager',
     logo: '/logos/oracle.png',
+    // Oracle Advertising (the business this role was part of) has since been discontinued - link to Oracle's
+    // homepage rather than a defunct product page.
+    url: 'https://www.oracle.com/',
     dates: '2022 — 2023',
-    note: 'Replaced seven disjointed internal configuration tools with a single self-service interface, saving roughly 120 FTE hours a month.',
+    note: 'I owned platformizing a set of internal ad measurement tagging tools to enable client self-service.',
   },
   {
     org: 'Gravitate',
-    title: 'Product Manager',
     logo: '/logos/gravitate.png',
+    url: 'https://gravitate.energy/',
     dates: '2020 — 2022',
-    note: 'First PM at a pre-seed startup; $0 to $1M+ ARR in under two years. Also the ML subject-matter expert behind its fuel demand forecasting and best-price purchasing algorithms.',
+    note: 'I owned representing the customer to enable the product to go from 0 to 1 and secure PMF.',
   },
 ];
 ---
 
 <Base
   title="About"
-  description="Fisher Ankney is a product manager in Boise, Idaho: a statistician by training and an outdoorsman by upbringing."
+  description="Fisher Ankney is a product manager and outdoorsman based in Boise, Idaho"
 >
   <div class="page-intro title-only">
     <div class="page-title">
@@ -45,39 +46,33 @@ const roles = [
 
   <div class="prose">
     <p>
-      I grew up in Grayling, in northern Michigan, where my parents raised me to hunt and fish. The town has a deep
-      outdoors heritage: Fred Bear opened his archery shop there, Trout Unlimited was founded there, and the
-      ubiquitous Adams dry fly was invented a few miles down the road.
+      I grew up in Grayling, Michigan - a small town with deep outdoors heritage. It's where Fred Bear opened up his archery shop,
+      where Trout Unlimited was founded, and the Adams dry fly was invented. I am forever grateful to my parents for instilling in me my passion 
+      for reading, solitude, and the outdoors during this time. 
     </p>
     <p>
-      The day after I graduated high school, I moved to Colorado. In Fort Collins I studied geology at Colorado State
-      and spent two years as a data analyst with the U.S. Geological Survey, working in the Colorado Rockies. That
-      work turned me toward statistics, which took me to Oklahoma State for a master's degree. I taught introductory
-      statistics there, learned a great deal, and made the jump into tech.
+      The day after I graduated high school, I moved to Fort Collins, Colorado. The Colorado Rockies were a wonderful place to study geology
+      and work for the US Geological Survey. Through this work, I became interested in formal statistical analysis and scientific experiment design, so I moved to Oklahoma for additional education.
     </p>
     <p>
-      In early 2022 I moved to Boise, which I now call home. Since then I've managed a range of technical products,
-      from advertising measurement to casino finance. Today I'm a Senior Product Manager at CCT, where I own a
-      financial operations and audit product.
+      After graduating from OSU with an MS in Statistics, I started my career in technology and moved to Boise, Idaho. I've been working remotely from Boise as a PM ever since.  
     </p>
   </div>
 
   <section class="timeline-wrap">
-    <h2 class="section-title">Where I've worked</h2>
+    <h2 class="section-title">Where I've Built Great Products</h2>
     <ol class="timeline">
       {
         roles.map((role) => (
           <li>
-            <span class="logo" aria-hidden="true">
+            <a class="logo" href={role.url} target="_blank" rel="noopener noreferrer" aria-label={`${role.org} website`}>
               <img src={role.logo} alt="" loading="lazy" decoding="async" />
-            </span>
+            </a>
             <div class="role-body">
-              <div class="role-head">
-                <span class="org">{role.org}</span>
-                <span class="dates">{role.dates}</span>
-              </div>
-              <p class="role-title">{role.title}</p>
-              <p class="role-note">{role.note}</p>
+              <p class="role-line">
+                <span class="org">{role.org}</span> — {role.note}
+              </p>
+              <span class="dates">{role.dates}</span>
             </div>
           </li>
         ))
@@ -87,8 +82,8 @@ const roles = [
 
   <div class="prose closing">
     <p>
-      I'm always open to new opportunities. My full resume is below, and the
-      <a href="/contact/">contact form</a> is the best way to get in touch.
+      My full resume is linked below, I'm always open to discussing new opportunities and making new connections.
+      Please reach out with any questions, comments or feedback using the contact form. Thanks!
     </p>
     <p class="resume-line">
       <a class="button" href="/fisher-ankney-resume.pdf" download>Download my resume (PDF)</a>
@@ -138,26 +133,36 @@ const roles = [
 
   .timeline li {
     display: grid;
-    grid-template-columns: 48px 1fr;
+    grid-template-columns: 60px 1fr;
+    align-items: center;
     gap: 1.1rem;
-    padding: 1.1rem 0;
+    padding: 0.85rem 0;
     border-bottom: 1px solid var(--border);
   }
 
   .logo {
     display: grid;
     place-items: center;
-    width: 48px;
-    height: 48px;
-    margin-top: 0.15rem;
+    width: 60px;
+    height: 60px;
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius);
+    text-decoration: none;
+  }
+
+  .logo:hover {
+    border-color: var(--accent);
+  }
+
+  .logo:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
   }
 
   .logo img {
-    max-width: 34px;
-    max-height: 34px;
+    max-width: 44px;
+    max-height: 44px;
     object-fit: contain;
     filter: grayscale(1) contrast(0.85) opacity(0.78);
     transition: filter 0.2s ease;
@@ -167,17 +172,24 @@ const roles = [
     filter: none;
   }
 
-  .role-head {
+  .role-body {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
     justify-content: space-between;
-    gap: 0.25rem 1rem;
+    gap: 0.2rem 1.25rem;
+  }
+
+  .role-line {
+    margin: 0;
+    flex: 1 1 320px;
+    min-width: 0;
+    font-size: 1.025rem;
   }
 
   .org {
     font-family: var(--display);
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     font-weight: 600;
   }
 
@@ -187,20 +199,6 @@ const roles = [
     letter-spacing: 0.03em;
     color: var(--muted);
     white-space: nowrap;
-  }
-
-  .role-title {
-    margin: 0.1rem 0 0.4rem;
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--rust);
-  }
-
-  .role-note {
-    margin: 0;
-    font-size: 1.025rem;
   }
 
 </style>
