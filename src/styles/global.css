@@ -1,7 +1,14 @@
 :root {
   --text: #241f17;
   --muted: #6e6150;
-  --bg: #f5f0e3;
+  --bg: #f2f4ee;
+  /* header: pine treeline and sunset sky from the homepage photo */
+  --header: #2c3a2b;
+  --header-border: #1f2a1e;
+  --header-text: #f6f1e4;
+  --header-muted: #c3cbb6;
+  --sunset: #f2b27a;
+  --sunset-hover: #f7c69b;
   --surface: #fffcf5;
   --border: #ddd0b0;
   --accent: #33422c;

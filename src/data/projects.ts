@@ -1,9 +1,14 @@
-export type ProjectStatus = 'Live' | 'Building' | 'Planned' | 'V2';
+import type { ImageMetadata } from 'astro';
+import callanish from '../assets/images/projects/callanish.jpg';
+import pageQuestCastle from '../assets/images/projects/page-quest-castle.svg';
+import buildBuddyBoard from '../assets/images/projects/build-buddy-board.png';
+
+export type ProjectStatus = 'Live' | 'Building' | 'Planned' | 'V1' | 'V2';
 
 export interface Project {
   id: string;
   name: string;
-  tagline: string;
+  tagline?: string;
   description: string;
   status: ProjectStatus;
   url?: string;
@@ -11,38 +16,38 @@ export interface Project {
   icon: 'music' | 'hammer' | 'book';
   /** Gives the card its own color scheme (palettes live in ProjectCard.astro). */
   theme?: 'build-buddy' | 'fiddlers-fancy' | 'page-quest';
+  /** Optional photo laid behind the card, muted by the theme's scrim. */
+  image?: ImageMetadata;
 }
 
 export const projects: Project[] = [
   {
     id: 'fiddlers-fancy',
-    name: "Fiddler's Fancy",
-    tagline: 'A living repository for fiddle music',
-    description:
-      'A growing archive of fiddle tunes with sheet music and tabs, plus a tuner that runs off your computer’s microphone.',
-    status: 'Planned',
+    name: "Fiddler's Friend",
+    description: 'A free library of fiddle music, and some tools to help keep the tradition alive.',
+    status: 'V1',
+    url: 'https://fiddle.fisherankney.com',
     theme: 'fiddlers-fancy',
+    image: callanish,
     icon: 'music',
   },
   {
     id: 'build-buddy',
     name: 'Build Buddy',
-    tagline: 'Roadmap + Kanban + Process',
-    description:
-      'A month-by-month roadmap across all my projects, a drag-and-drop kanban board for each one, and the six-stage build process every card moves through. Edits on the live site commit straight to GitHub.',
+    description: 'A roadmap and kanban board for all my projects, built around a six-stage build process.',
     status: 'V2',
     url: 'https://build.fisherankney.com',
     theme: 'build-buddy',
+    image: buildBuddyBoard,
     icon: 'hammer',
   },
   {
     id: 'page-quest',
     name: 'Page Quest',
-    tagline: 'Gamified reading tracker',
-    description:
-      'Turns reading into a game: log daily summaries, review books, track your TBR, and level up a gameboard roadmap with badges and Wrapped-style insights — built to reward understanding, not just pages turned.',
+    description: 'A reading tracker that turns every book into a quest, with daily logs, reviews and badges.',
     status: 'Planned',
     theme: 'page-quest',
+    image: pageQuestCastle,
     icon: 'book',
   },
 ];
