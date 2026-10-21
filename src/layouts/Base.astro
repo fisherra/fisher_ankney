@@ -33,6 +33,18 @@ const isActive = (href: string) => Astro.url.pathname.startsWith(href);
       rel="stylesheet"
     />
     <title>{fullTitle}</title>
+    {/* Umami analytics, production only; data-domains skips previews. Shared website ID with fiddle.fisherankney.com. */}
+    {
+      import.meta.env.PROD && (
+        <script
+          is:inline
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id="4186514c-8689-4e94-9a67-466f7af6fe01"
+          data-domains="fisherankney.com,www.fisherankney.com"
+        />
+      )
+    }
   </head>
   <body>
     <header class="site-header">
