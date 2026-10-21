@@ -5,9 +5,9 @@ import { test, expect, type Page } from '@playwright/test';
 const STATIC_PAGES = ['/', '/projects/', '/journal/', '/bookshelf/', '/about/', '/contact/', '/404/'];
 
 // Controls a visitor actually needs to tap: nav, the header CTA, sort/filter, pagination,
-// and the two buttons that leave the page (contact submit, resume download). Plain prose
+// the two buttons that leave the page (contact submit, resume download), and the post pages' back link. Plain prose
 // links are intentionally excluded — WCAG's 24x24 target-size rule exempts inline text links.
-const TAP_TARGET_SELECTOR = '.nav-link, a.contact, select, button, .chip, a.button';
+const TAP_TARGET_SELECTOR = '.nav-link, a.contact, select, button, .chip, a.button, a.back';
 const MIN_TAP_TARGET = 23; // 24px floor (WCAG 2.5.8 AA), with 1px of rounding slack
 
 async function assertNoHorizontalOverflow(page: Page) {

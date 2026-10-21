@@ -40,7 +40,9 @@ const sectionLabel = post.collection === 'journal' ? "Sportsman's Journal" : 'Bo
 
   .back {
     display: inline-block;
-    margin-bottom: 1.5rem;
+    /* Padding makes a comfortable tap target; the negative top margin keeps the text where it was. */
+    padding: 0.6rem 0;
+    margin: -0.6rem 0 0.9rem;
     color: var(--muted);
     text-decoration: none;
     font-family: var(--mono);

@@ -50,7 +50,14 @@ const isActive = (href: string) => Astro.url.pathname.startsWith(href);
     <header class="site-header">
       <div class="inner">
         <a class="site-title" href="/">Fisher Ankney</a>
-        <nav>
+        {/* Phones: the button opens the nav (shown once the script runs; without it the nav stays visible). */}
+        <button class="menu-button" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path class="menu-open" d="M3 6h18M3 12h18M3 18h18"></path>
+            <path class="menu-close" d="M5 5l14 14M19 5L5 19"></path>
+          </svg>
+        </button>
+        <nav id="site-nav" aria-label="Main">
           {nav.map(({ href, label }) => (
             <a href={href} class:list={['nav-link', { active: isActive(href) }]}>{label}</a>
           ))}
@@ -64,6 +71,26 @@ const isActive = (href: string) => Astro.url.pathname.startsWith(href);
     <footer class="site-footer">
       <p>© {new Date().getFullYear()} Fisher Ankney · Boise, Idaho</p>
     </footer>
+    <script>
+      // Phone menu: the button toggles the nav; Escape closes it and returns focus to the button.
+      const header = document.querySelector<HTMLElement>('.site-header');
+      const button = header?.querySelector<HTMLButtonElement>('.menu-button');
+      if (header && button) {
+        const setOpen = (open: boolean) => {
+          header.dataset.menu = open ? 'open' : 'closed';
+          button.setAttribute('aria-expanded', String(open));
+        };
+        setOpen(false);
+        button.hidden = false;
+        button.addEventListener('click', () => setOpen(header.dataset.menu !== 'open'));
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && header.dataset.menu === 'open') {
+            setOpen(false);
+            button.focus();
+          }
+        });
+      }
+    </script>
   </body>
 </html>
 
@@ -113,15 +140,15 @@ const isActive = (href: string) => Astro.url.pathname.startsWith(href);
   .nav-link:hover,
   .nav-link.active {
     color: var(--header-text);
-    border-bottom-color: var(--sunset);
+    border-bottom-color: var(--rust);
   }
 
   .contact {
     font-family: var(--display);
     font-size: 1.05rem;
     font-weight: 600;
-    background: var(--sunset);
-    color: var(--header);
+    background: var(--rust);
+    color: #fff;
     text-decoration: none;
     padding: 0.4rem 1.1rem;
     border-radius: var(--radius);
@@ -129,8 +156,103 @@ const isActive = (href: string) => Astro.url.pathname.startsWith(href);
 
   .contact:hover,
   .contact.active {
-    background: var(--sunset-hover);
-    color: var(--header);
+    background: var(--rust-hover);
+    color: #fff;
+  }
+
+  .menu-button {
+    display: none;
+  }
+
+  /* Phones: one slim row with the name and a menu button; the nav drops down below it. Without the script
+     (no data-menu), the nav wraps underneath as before. */
+  @media (max-width: 640px) {
+    .site-header {
+      position: relative;
+    }
+
+    .inner {
+      padding: 0.5rem 1.25rem;
+    }
+
+    .site-title {
+      font-size: 1.4rem;
+    }
+
+    .menu-button:not([hidden]) {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      margin-right: -0.6rem;
+      padding: 0;
+      border: 0;
+      border-radius: var(--radius);
+      background: none;
+      color: var(--header-text);
+      cursor: pointer;
+    }
+
+    .menu-button svg {
+      width: 26px;
+      height: 26px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+    }
+
+    .menu-close,
+    .menu-button[aria-expanded='true'] .menu-open {
+      display: none;
+    }
+
+    .menu-button[aria-expanded='true'] .menu-close {
+      display: inline;
+    }
+
+    .site-header[data-menu='closed'] nav {
+      display: none;
+    }
+
+    .site-header[data-menu='open'] nav {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      z-index: 20;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: 0.25rem 1.25rem 1rem;
+      background: var(--header);
+      border-bottom: 1px solid var(--header-border);
+      box-shadow: 0 8px 20px rgba(20, 28, 19, 0.35);
+    }
+
+    .site-header[data-menu='open'] .nav-link {
+      display: flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 0 0.75rem;
+      font-size: 1.15rem;
+      border-bottom: 0;
+      border-left: 3px solid transparent;
+    }
+
+    .site-header[data-menu='open'] .nav-link.active {
+      border-left-color: var(--rust);
+    }
+
+    .site-header[data-menu='open'] .contact {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      margin-top: 0.6rem;
+      font-size: 1.15rem;
+    }
   }
 
   .site-footer {
