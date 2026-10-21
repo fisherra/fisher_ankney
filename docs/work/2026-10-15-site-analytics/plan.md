@@ -137,9 +137,13 @@ likely loses country data.
   Fisher searches while logged in.
 - `before-send.js` drops any event whose fields mention `/private` (not only the referrer), as the Risks section
   proposed.
-- `tune-play` is recorded in the Play button's handler, not inside `play()`, so loop restarts and passage replays
-  don't count as new plays. `metronome-start` skips resuming after an interruption. `tuner-start` skips "Tap to
-  resume".
+- After `/code-review` (2026-10-20): `tune-play` is recorded in `play()` unless already playing, so Play, note
+  taps and passage drags all count but tempo/loop restarts don't. `tuner-start` fires once a session is actually
+  listening (not on denied mics or resumes). `metronome-start` reports the trainer's start tempo when the trainer
+  is on. `lesson-step` is recorded after saving. FF adds `data-exclude-hash` (setting switches rewrite `#x=N`).
+  `before-send.js` also catches percent-encoded and upper-case `/private`. The hub's `data-domains` adds
+  `www.fisherankney.com`, which serves the site without redirecting. FF's artifacts stay in the hub repo with a
+  pointer, as resolved in spec flag 7.
 - Hub Playwright: `npm run test:mobile` can't launch its own server under an agent (`astro preview` backgrounds
   itself), and with the dev server running it silently tests dev, not the build. Ran it against a manually started
   background preview of a fresh build instead; documented in the hub's AGENTS.md.
